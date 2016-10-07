@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+	<h1>Courses</h1>
+	<font size=2 color="black">The professors of the LASCA currently dictate the following disciplines as part of the curricula of post-graduate courses at the Institute of Computing at UNICAMP.<br><br></font>
+	<h3>Details:</h3>
+<div class="ui grid">
+	<div class="four wide column">
+		<div class="ui inverted segment">
+			<div class="ui small inverted relaxed divided list">
+				<div class="item">
+  					<div class="content">
+    					<div class="header">Courses:</div>
+    					{% for item in newdoc %}
+							<a href="#{{item.id}}">
+							<i class="circular teal user icon"></i>
+    						{{ item.code_course }}</a><br>
+		    			{% endfor %}
+  					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="twelve wide column">
+	{% for item in newdoc %}<a id="{{ item.id }}"></a>
+		<table width="100%" class="ui celled definition table segment">
+			<tbody>
+				<tr>
+					<td colspan="2" bgcolor="black"><font color="white">{{ item.code_course }} - {{ item.name_course }}</font></td>
+				</tr>
+				{% if not item.description_course == "" %}
+				<tr>
+					<td>Description:</td>
+					<td><font size=2>{{ item.description_course }}</font></td>
+				</tr>
+				{% endif %}
+				{% if not item.prerequisites_course == "" %}
+				<tr>
+					<td>Pre-requisites:</td>
+					<td><font size=2>{{ item.prerequisites_course }}</font></td>
+				</tr>
+				{% endif %}
+				{% if not item.professor_course == "" %}
+				<tr>
+					<td>Professor:</td>
+					<td><font size=2>{{ item.professor_course }}</font></td>
+				</tr>
+				{% endif %}
+				{% if not item.website_course == "" %}
+				<tr>
+					<td>Link:</td>
+					<td><font size=2><a href="{{ item.website_course }}" target="_blank">{{ item.website_course }}</a></font></td>
+				</tr>
+				{% endif %}
+			</tbody>
+		</table>
+	{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="LASCA - Laboratory of Security and Cryptography">
+  <meta name="author" content="Marcelo Palma Salas">
+  <link rel="shortcut icon" href="/static/img/lasca.ico">
+  <meta name="google-site-verification" content="Z_QbUjCIoCryzbYSVLlPCIShk9oiXA_bbH4Xue07k-w" />
+
+  <title>LASCA - Laboratory of Security and Cryptography</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href="/static/css/semantic.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/homepage.css">
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+  <script src="/static/js/semantic.js"></script>
+  <script src="/static/js/homepage.js"></script>
+  <script src="/static/js/main.js"></script>
+
+</head>
+
+<body id="home">
+
+<div class="ui styled sidebar">
+  <h3 class="ui header">Contact Us</h3>
+  <form method='POST' action='{% url "contact" %}' role="form">{% csrf_token %}
+    <div class="ui small form">
+      <div class="field">
+        {{ form.non_field_errors }}
+        <p><div class="fieldWrapper">
+          {{ form.name_comment.errors }}
+          <label for="id_name_comment">Your name: </label>
+          <div class="ui icon input"><i class="user icon"></i>
+            <input id="id_name_comment" type="text" name="name_comment" maxlength="100" class="form-control" placeholder="Enter your name">
+          </div>
+        </div></p>
+        <p><div class="fieldWrapper">
+          {{ form.email_comment.errors }}
+          <label for="id_email_comment">Your email: </label>
+          <div class="ui icon input"><i class="mail icon"></i>
+            <input id="id_email_comment" type="text" name="email_comment" maxlength="100" class="form-control" placeholder="Enter your email">
+          </div>
+        </div></p>
+        <p><div class="fieldWrapper">
+          {{ form.message_comment.errors }}
+          <label for="id_message_comment">Your Message: </label>
+          <textarea cols="40" id="id_message_comment" name="message_comment" class="form-control" rows="8" placeholder="Enter your message"></textarea>
+        </div></p>
+      </div>
+      <input type="submit" value="Send message" hidden="true" class="btn btn-primary">
+    <div class="ui teal fluid button">Send message</div>
+  </div>
+  </form>
+</div>
+
+  <style type="text/css">.barfijo {position:fixed !important; top:170px; z-index:10 !important} </style>
+  <div class="barfijo">
+    <div class="ui teal launch right attached button">
+      <i class="icon edit layout"></i>
+      <span class="text" style="display:none;">Contact</span>
+    </div>
+  </div>
+
+  <style type="text/css">.fijo {position:fixed !important; top:0px; z-index:10 !important} </style>
+
+  <div class="ui inverted page grid masthead segment">
+    <div class="column">
+      <div class="fijo">
+        <div class="ui inverted pointing menu">
+          <div class="header item">
+            <a href='{% url "index" %}'>
+            <i class="home icon"></i> LASCA</a>
+          </div>
+          <div class="right menu">
+            <div class="ui top right pointing mobile dropdown link item">
+              Menu
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <a class="item" href='{% url "people" %}'>People</a>
+                <a class="item" href='{% url "projects" %}'>Projects</a>
+                <a class="item" href='{% url "publications" %}'>Publications</a>
+                <a class="item" href='{% url "courses" %}'>Courses</a>
+                <a class="item" href='{% url "meetings" %}'>Meetings</a>
+                <a class="item" href='{% url "conferences" %}'>Conferences</a>
+                <a class="item" href='{% url "reports" %}'>Reports</a>
+              </div>
+            </div>
+            <a class="item" href='{% url "people" %}'><i class="users icon"></i>People</a>
+            <a class="item" href='{% url "projects" %}'><i class="open folder icon"></i>Projects</a>
+            <a class="item" href='{% url "publications" %}'><i class="text file icon"></i>Publications</a>
+            <a class="item" href='{% url "courses" %}'><i class="book icon"></i>Courses</a>
+            <a class="item" href='{% url "meetings" %}'><i class="calendar icon"></i>Meetings</a>
+            <a class="item" href='{% url "conferences" %}'><i class="info icon"></i>Conferences</a>
+            <a class="item" href='{% url "reports" %}'><i class="bar chart icon"></i>Reports</a>
+          </div>
+        </div>      
+      </div>
+      <div class="ui hidden transition information">
+        <!--<h1 class="ui inverted header">
+          <a href="{% url "about" %}" title="About LASCA"><font color="white">LASCA</font></a>
+        </h1>-->
+        <p><a href="{% url "about" %}" title="About LASCA"><font color="white">Laboratory of Security and Cryptography</font></a></p>
+        <div class="large basic inverted animated fade ui button">
+          <div class="visible content"><b>Contact</b></div>
+          <div class="hidden content"><b>Join as!</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div class="ui page grid overview segment">
+    <div class="ui two wide column"></div>
+    <div class="twelve wide column">
+      <div class="ui three column center aligned stackable divided grid">
+        <div class="column">
+          <a href="http://www.unicamp.br/unicamp/">
+            <img src="/static/img/unicamp.jpg" alt="Institute of Computing (IC)" height="128">
+          </a>
+          <p><b>University of Campinas</b> is a leading Brazilian institution recognition for their academic excellence and innovative research.</p>
+          <p><a class="ui youtube right labeled icon button" href="http://www.unicamp.br/unicamp/">About <i class="globe icon"></i></a></p>
+        </div>
+        <div class="column">
+          <a href="http://www.ic.unicamp.br/">
+            <img src="/static/img/ic.png" alt="Institute of Computing (IC)" height="128">
+          </a>
+          <p><b>Institute of Computing (IC)</b> has earned a reputation for providing exceptional higher education (<a href="http://www.ic.unicamp.br/pos">Capes 7</a>) in Master and PhD degrees.</p>
+          <p><a class="ui vk right labeled icon button" href="http://www.ic.unicamp.br/">Publications <i class="desktop icon"></i></a></p>
+        </div>
+        <div class="column">
+          <a href="http://www.las.ic.unicamp.br/pub/ubuntu-releases/">
+            <img src="/static/img/LinuxVersions.jpg" alt="Smiley face" height="128">
+          </a>
+          <p><b>LASCA</b> maintain a mirror of the main repositories of open software to help their dissemination and use, mainly in Brazil and Latin America.</p>
+          <p><a class="ui linkedin right labeled icon button" href="http://www.las.ic.unicamp.br/pub/ubuntu-releases/">Prizes <i class="cloud download icon"></i></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  -->
+  <hr align="center" noshade="noshade" size="2" width="80%" />
+  <br>
+  <div class="ui grid center aligned segment">
+  <div class="twelve wide column">
+    <a href="http://www.ic.unicamp.br/"><img src="/static/img/lasca.png" width="45%"></a>
+      <p><h4>Starting from 2012, the LCA (Laboratory of Cryptography Applied) and the LAS (Laboratory of Systems Administration and Security) will merge into one Laboratory of Security and Cryptography (LASCA), founded at the Institute of Computing (IC) of the University of Campinas (UNICAMP). Computing research included projects on malware, security cloud computing, vulnerabilities analysis, efficient and secure implementation of cryptographic application, electronic voting, just to mention a few.</h4></p>
+    </div>
+  </div>
+  
+  <hr align="center" noshade="noshade" size="2" width="80%" /><br>
+
+  <div class="ui page grid overview segment">
+    <!--<div class="ui two wide column"></div>-->
+    <div class="sexteen wide column">
+      <div class="ui four column center aligned stackable divided grid">
+        <div class="column">
+          <a href="http://www.unicamp.br/unicamp/">
+            <img src="/static/img/unicamp.jpg" alt="Institute of Computing (IC)" height="128">
+          </a>
+          <p><b>University of Campinas</b> is a leading Brazilian institution recognition for their academic excellence and innovative research.</p>
+          <p><a class="ui linkedin right labeled icon button" href="http://www.unicamp.br/unicamp/">UNICAMP <i class="globe icon"></i></a></p>
+        </div>
+        <div class="column">
+          <a href="http://www.ic.unicamp.br/">
+            <img src="/static/img/ic.png" alt="Institute of Computing (IC)" height="128">
+          </a>
+          <p><b>Institute of Computing (IC)</b> has earned their reputation for providing exceptional higher education (<a href="http://www.ic.unicamp.br/pos">Capes 7</a>).</p>
+          <p><a class="ui linkedin right labeled icon button" href="http://www.ic.unicamp.br/">Join us! <i class="desktop icon"></i></a></p>
+        </div>
+        <div class="column">
+          <a href="http://www.las.ic.unicamp.br/pub/ubuntu-releases/">
+            <img src="/static/img/LinuxVersions.jpg" alt="Smiley face" height="128">
+          </a>
+          <p><strong>LASCA</strong> maintain a <b>mirror</b> of the main repositories of open software to help their dissemination and use, mainly in Brazil and Latin America.</p>
+          <p><a class="ui linkedin right labeled icon button" href="http://www.las.ic.unicamp.br/pub/ubuntu-releases/">Download <i class="cloud download icon"></i></a></p>
+        </div>
+        <div class="column">
+          <a href="{% url "awards" %}">
+            <img src="/static/img/trofeo.png" alt="Smiley face" height="128">
+          </a>
+          <p>The <strong>awards and acknowledgments</strong> obtained for their researchers of the Laboratory of Security and Cryptography.</p>
+          <p><a class="ui linkedin right labeled icon button" href='{% url "awards" %}'>Awards <i class="trophy icon"></i></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui inverted page grid stackable relaxed feature segment">
+    <div class="row">
+      <div class="column">
+        <h1 class="center aligned ui header">
+          Where to find us
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="nine wide column">
+        <p><b>Address:</b></p>
+        Av. Albert Einstein, 1251, Room 84 - Lasca<br>
+        Cidade Universitária Zeferino Vaz<br>
+        Campinas, SP, Brazil<br>
+        Zip Code 13083-852<br>
+        <p><b>Phone:</b></p>
+        +55 19 3521-5838 (Administrative Support IC)<br>
+        +55 19 3521-5821 (Lab phone)<br>
+        <div class="ui inverted section divider"></div>
+
+        <h3 class="ui header">Last meetings:</h3>
+        <div class="ui inverted animated selection list">
+        {% for item in newdoc %}
+          <div class="item">
+            {{ item.description_meeting|safe }}
+            <div class="right floated">{{ item.date_meeting }}</div>
+          </div>
+        {% endfor %}
+        </div>
+
+        <div class="ui basic inverted animated button button"><a href='{% url "meetings" %}'>
+          <div class="visible content">Read More</div>
+          <div class="hidden content"><i class="right arrow icon"></i></div></a>
+        </div>
+      </div>
+
+      <div class="seven wide column">
+        <div class="ui feed segment">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7355.207582694452!2d-47.064534949737556!3d-22.817140562129712!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd2718275096f3d70!2sInstituto+de+Computa%C3%A7%C3%A3o+-+Unicamp!5e0!3m2!1ses-419!2sbr!4v1409665270438" width=100% height="320" frameborder="0" style="border:0"></iframe>
+          <div class="content">
+            <p class="description" align="justify">You can use the internal bus to get the IC, see the schedules and routes of the Circular I, II and Night <a href="http://www.prefeitura.unicamp.br/servicos/diretoria-de-servicos-de-transporte">here</a>.</p>
+            <p align="justify">In Campinas, you can take others bus lines like: 210, 300, 330, 331, 332, 338. More information in <a href="http://www.emdec.com.br/ABusInf/index.asp?MODULO=&OpcPPD=0&EdMaxPe=600&LtOpcTipoDia=0&LtOpcPrioriz=O&LtOpcHorario=19&LIGACAO=&PontosNotOrig=59&PontosNotDest=18&TIPO_LOCAL_ORIG=63&TIPO_LOCAL_DEST=16&CdNotIDDestino=154&CdNotIDOrigem=&LOCAL_DEST=&NumDestino=&CruzDestino=&LOCAL_ORIG=&BAIRRO_DEST=">Emdec.</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--
+  <div class="ui page grid stackable segment">
+    <div class="row">
+      <div class="column">
+        <h1 class="center aligned ui header">
+          Our Sponsors
+        </h1>
+        <div class="ui horizontal divider"><i class="loading icon"></i></div>
+      </div>
+    </div>
+    <div class="center four column aligned row">
+      <div class="column">
+        <div class="ui text shape">
+          <div class="sides">
+            <div class="active side">
+              <img src="/static/img/intel.jpg" height="80" width="241">
+            </div>
+            <div class="side">
+              <img src="/static/img/lg.jpg" height="70" width="211">
+            </div>
+            <div class="side">
+              <img src="/static/img/samsung.jpg" height="70" width="211">
+            </div>
+            <div class="side">
+              <img src="/static/img/lenovo.jpg" height="70" width="211">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui text shape">
+          <div class="sides">
+            <div class="side">
+              <img src="/static/img/intel.jpg" height="80" width="211">
+            </div>
+            <div class="active side">
+              <img src="/static/img/lg.jpg" height="70" width="211">
+            </div>
+            <div class="side">
+              <img src="/static/img/samsung.jpg" height="70" width="211">
+            </div>
+            <div class="side">
+              <img src="/static/img/lenovo.jpg" height="70" width="211">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui text shape">
+          <div class="sides">
+            <div class="side">
+              <img src="/static/img/intel.jpg" height="80" width="211">
+            </div>
+            <div class="side">
+              <img src="/static/img/lg.jpg" height="70" width="211">
+            </div>
+            <div class="active side">
+              <img src="/static/img/samsung.jpg" height="70" width="211">
+            </div>
+            <div class="side">
+              <img src="/static/img/lenovo.jpg" height="70" width="211">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui text shape">
+          <div class="sides">
+            <div class="side">
+              <img src="/static/img/intel.jpg" height="80" width="211">
+            </div>
+            <div class="side">
+              <img src="/static/img/lg.jpg" height="70" width="211">
+            </div>
+            <div class="side">
+              <img src="/static/img/samsung.jpg" height="70" width="211">
+            </div>
+            <div class="active side">
+              <img src="/static/img/lenovo.jpg" height="70" width="211">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+  <div class="ui inverted teal page grid segment">
+    <div class="sixteen wide column">
+      <div class="ui four column stackable grid">
+        <div class="column">
+          <div class="ui header">Professors & Courses</div>
+          <div class="ui inverted link list">
+          {% for profe in professor %}
+            {% if profe.personal_web %}
+              <a class="item" href="{{ profe.personal_web }}">Prof. {{ profe.name_person }}</a>
+            {% else %}
+              <a class="item">Prof. {{ profe.name_person }}</a>
+            {% endif %}
+          {% endfor %}
+          {% for item in course %}
+            {% if item.website_course %}
+              <a class="item" href="{{ item.website_course }}">{{ item.code_course }} {{ item.name_course|slice:":20" }}...</a>
+            {% else %}
+              <a class="item">{{ item.code_course }}{{ item.name_course|slice:":20" }}...</a>
+            {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui header" >Unicamp</div>
+          <div class="ui inverted link list">
+            <a class="item" href="http://www.unicamp.br/unicamp/?language=en">About</a>
+            <a class="item" href="http://www.unicamp.br/unicamp/the-unicamp/unicamp?language=en">History</a>
+            <a class="item" href="http://www.unicamp.br/unicamp/teaching/research?language=en">Research</a>
+            <a class="item" href="http://www.unicamp.br/unicamp/imprensa?language=pt-br">Press</a>
+            <a class="item" href="http://www.unicamp.br/unicamp/ju?language=pt-br">Journal of Unicamp</a>
+            <a class="item" href="http://www.ccuec.unicamp.br/ccuec/rede_sem_fio">Wireless network</a>
+            <a class="item" href="http://www.dac.unicamp.br/portal/pos/calendarios/">Calendars Graduate</a>
+            <a class="item" href="http://www.unicamp.br/unicamp/international-relations?language=en">International Relations</a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui header">IC Community</div>
+          <div class="ui inverted link list">
+            <a class="item" href="http://www.ic.unicamp.br/node/23">Undergraduate</a>
+            <a class="item" href="http://www.ic.unicamp.br/node/6">Graduate</a>
+            <a class="item" href="http://www.ic.unicamp.br/node/26">Research</a>
+            <a class="item" href="http://www.ic.unicamp.br/node/25">Extension</a>
+            <a class="item" href="http://www.ic.unicamp.br/node/28">Faculty</a>
+            <a class="item" href="http://www.ic.unicamp.br/node/119">Staff</a>
+            <a class="item" href="http://www.ic.unicamp.br/noticias">News</a>
+            <a class="item" href="http://www.ic.unicamp.br/node/250">Press</a>
+          </div>
+        </div>
+        <div class="right floated aligned column">
+          <h3 class="ui header">Contact Us</h3>
+          <addr>
+            Av. Albert Einstein, 1251<br>
+            Room 84 - LASCA<br>
+            Cidade Universitária Zeferino Vaz<br>
+            Campinas, SP, Brazil<br>
+            Zip Code 13083-852<br>
+          </addr>
+          <p>+55 19 3521-5821</p>
+        </div>
+      </div>
+    </div>
+  <div class="sixteen wide column">
+    <center>
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><font color="Black">Django Lab</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/ecram/djangolab" property="cc:attributionName" rel="cc:attributionURL" style="color:Black">Marcelo I. P. Salas</a></font><br><font color="Teal">is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" style="color:teal">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</font>
+    </center>
+  </div>  
+</div>
+
+  
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+<h1>Conferences and Journals on Computer Security</h1>
+<font size=2 color="black">Some academic conferences and journals specializing in or covering also computer security:</font><br><br>
+<i class="calendar icon"></i><b>Upcoming Events</b>
+	<table class="ui inverted small sortable table segment">
+		<thead>
+			<tr>
+				<th width="150px">Acronym</th>
+				<th width="400px" align="center">Name</th>
+				<th width="200px">Place</th>
+				<th>Date</th>
+				<th>Deadline</th>
+				<th>Qualis</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for item in newdoc %}
+		{% if item.past_conference == False %}
+			<tr>
+				<td align="left"><a {% if item.site_conference %} href="{{ item.site_conference }}" {% endif %}>{{ item.acronym_conference }}</a></td>
+				<td>{{ item.name_conference }}</td>
+				<td>{% if item.place_conference %} {{ item.place_conference }} {% endif %}</td>
+				<td>{% if item.end_conference %}
+					{% if item.start_conference.month == item.end_conference.month %}
+						{{ item.start_conference|date:"M. d" }} - {{ item.end_conference|date:"d, Y" }}
+					{% else %}
+						{{ item.start_conference|date:"M. d" }} - {{ item.end_conference|date:"M. d, Y" }}
+					{% endif %}
+					{% elif item.place_conference %}{{ item.start_conference|date:"M. d, Y" }}{% endif %}</td>
+				<td>{% if item.deadline_conference %} {{ item.deadline_conference|date:"M. d, Y" }} {% endif %}</td>
+				<td>{% if item.qualis_cc %} {{ item.qualis_cc }} {% endif %}</td>
+			</tr>
+		{% endif %}
+		{% endfor %}
+		</tbody>
+	</table>
+<br>
+<i class="calendar icon"></i><b>Past Events</b>
+	<table class="ui inverted small sortable table segment">
+		<thead>
+			<tr>
+				<th width="150px">Acronym</th>
+				<th width="400px">Name</th>
+				<th width="200px">Place</th>
+				<th>Date</th>
+				<th>Deadline</th>
+				<th>Qualis</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for item in newdoc %}
+		{% if item.past_conference == True %}
+			<tr>
+				<td align="left"><a {% if item.site_conference %} href="{{ item.site_conference }}" {% endif %}>{{ item.acronym_conference }}</a></td>
+				<td>{{ item.name_conference }}</td>
+				<td>{% if item.place_conference %} {{ item.place_conference }} {% endif %}</td>
+				<td>{% if item.end_conference %}
+					{% if item.start_conference.month == item.end_conference.month %}
+						{{ item.start_conference|date:"M. d" }} - {{ item.end_conference|date:"d, Y" }}
+					{% else %}
+						{{ item.start_conference|date:"M. d" }} - {{ item.end_conference|date:"M. d, Y" }}
+					{% endif %}
+					{% elif item.place_conference %}{{ item.start_conference|date:"M. d, Y" }}{% endif %}</td>
+				<td>{% if item.deadline_conference %} {{ item.deadline_conference|date:"M. d, Y" }} {% endif %}</td>
+				<td>{% if item.qualis_cc %} {{ item.qualis_cc }} {% endif %}</td>
+			</tr>
+		{% endif %}
+		{% endfor %}
+		</tbody>
+	</table>
+
+<script src="https://dl.dropboxusercontent.com/u/780754/tablesort/jquery.tablesort.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('table').tablesort().data('tablesort');
+		$('thead th.number').data('sortBy', function(th, td, sorter) {
+			return parseInt(td.text(), 10);
+		});
+	});
+</script>
+
+{% endblock %}

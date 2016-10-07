@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+<h1>Meetings and Announcement</h1>
+<i class="users icon"></i><b>How to Join </b><br>
+<font size=2 color="black">To join the Meetings and receive the announcements, please join our mailing list.<br>
+* You must be affiliated with LASCA Security Group to join.<br><br></font>
+<i class="calendar icon"></i><b>Upcoming Events</b>
+	<table class="ui small table segment">
+	{% for item in newdoc %}
+		{% if item.past_event == False %}
+			<tr>
+				<td class="two wide">{{ item.date_meeting|date:"Y M. d" }}</td>
+				<td><font size=2>{{ item.description_meeting|safe }}</font></td>
+			</tr>
+		{% endif %}
+	{% endfor %}
+	</table>
+<br>
+<i class="calendar icon"></i><b>Past Events</b>
+	<table class="ui small table segment">
+	{% for item in newdoc %}
+		{% if item.past_event == True %}
+			<tr>
+				<td class="two wide">{{ item.date_meeting|date:"Y M. d" }}</td>
+				<td><font size=2>{{ item.description_meeting|safe }}</font></td>
+			</tr>
+		{% endif %}
+	{% endfor %}
+	</table>
+{% endblock %}
