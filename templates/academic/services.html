@@ -1,0 +1,62 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+      
+<h1>Servicios del Instituto</h1>
+<i class="trophy icon"></i>
+<font>Los <b>servicios ofrecidos</b> por el instituto son descritps a seguir:</font><br>
+
+<div class="ui grid">
+  <div class="sexteen wide column">
+  <table width="100%" class="ui definition table segment">
+    <tbody>
+      {% for service in services %}
+        <tr>
+          <td rowspan="5">
+            <img src="{{ service.image_service.url }}" width='140' height='140'>
+          </td>
+            <td colspan="2" bgcolor="black"><font color="white"><i class="globe icon"></i>{{ service.name_services }}</font></td>
+        </tr>
+        {% if service.research_topic %}
+        <tr>
+          <td>Línea de Investigación:</td>
+          <td><font size=2><b>{{ service.research_topic }}</b></font></td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td>Descripción:</td>
+          <td><font size=2>{{ service.description_service }}</font></td>
+        </tr>
+        {% if service.web_service %}
+        <tr>
+          <td>Sitio Web:</td>
+          <td><a href="{{ service.web_service }}">{{ service.web_service }}</a></td>
+        </tr>
+        {% endif %}
+        {% if service.service_triptych %}
+        <tr>
+          <td>Tríptico:</td>
+          <td>
+            <a href='{{ service.service_triptych.url }}'>
+              <i class="book icon"></i> {{ service.service_triptych }}
+            </a>
+          </td>
+        </tr>
+        {% endif %}
+          <tr><td></td><td><br></td></tr>
+          <tr><td></td><td><br></td></tr>
+          <tr><td></td><td><br></td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+Para ofrecer <b>nuevos servicios</b> del Instituto, envíe un correo electrónico al email institucional o entre en contacto con el personal administrativo.<br>
+
+  <br>
+  <br>
+{% endblock %}

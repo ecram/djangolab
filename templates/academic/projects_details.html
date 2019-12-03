@@ -1,0 +1,178 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+        <h1>Proyectos por Línea de Investigación:</h1>
+        <h4>Actualmente el Instituto está envuelto en una variedad de proyectos cubriendo distintos aspectos en base a las líneas de investigación.</h4>
+        <h4>Detalles:</h4>
+        <div class="ui grid">
+          <div class="four wide column">
+            <div class="ui inverted segment">
+              <div class="ui small inverted relaxed divided list">
+                <div class="item">
+                  <div class="content">
+                    <div class="header">Proyectos:</div>
+                    {% for project in projects %}
+                      <a href="#{{project.id}}"><i class="circular teal user icon"></i>
+                      <a href="#{{project.id}}">
+                      {{ project.acronym }}</a><br>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="twelve wide column">
+
+          {% for topic in tp %}
+          <h3 class="ui header"><b>
+          <i class="settings icon"></i>
+            {{ topic.topic.name }}:</b>
+          </h3>
+            {% for project in projects %}
+            {% if project.topic.name == topic.topic.name %}
+
+            <a id="{{project.id}}"></a>
+            <table width="100%" class="ui definition table segment">
+              <tbody>
+                <tr>
+                  <td colspan="2" bgcolor="black">
+                    <font color="white"><i class="open folder icon"></i> {{ project.name }}</font>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Línea de Investigación:</th>
+                  <td align="justify">
+                        {{ project.topic.name }}<br>
+                  </td>                  
+                </tr>
+                {% if project.website %}
+                <tr>
+                  <th>Sitio Web: </th>
+                  <td>{{ project.website }}</td>
+                </tr>
+                {% endif %}
+                {% if project.project_document %}
+                <tr>
+                  <th>Documento: </th>
+                  <td><a href="{{ project.project_document.url }}" target="_blank">{{ project.project_document }}</a></td>
+                </tr>
+                {% endif %}
+                {% if project.description %}
+                <tr>
+                  <th>Descripción:</th>
+                  <td align="justify">
+                    {{ project.description }}
+                  </td>
+                </tr>
+                {% endif %}
+                {% if project.impact %}
+                <tr>
+                  <th>Impacto:</th>
+                  <td align="justify">{{ project.impact }}</td>
+                </tr>
+                {% endif %}
+                {% if project.objective %}
+                <tr>
+                  <th>Objetivos:</th>
+                  <td align="justify">
+                    <ol>
+                      <li>{{ project.objective }}</li>
+                    </ol>
+                  </td>
+                </tr>
+                {% endif %}
+                <tr>
+                  <th>Participantes:</th>
+                  <td>
+                    <p>
+                      <h4>Coordinador:</h4>
+                        {{ project.chair }}<br>
+                      {% if project.co_chair.all %}
+                      <h4>Co-coordinador</h4>
+                      <ul>
+                        {% for newdoc in project.co_chair.all %}
+                          <li>{{ newdoc }}</li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                      {% if project.member.all %}
+                      <h4>Participantes del Proyecto</h4>
+                      <ol type="I">
+                        {% for newdoc in project.member.all %}
+                          <li>{{ newdoc }}</li>
+                        {% endfor %}
+                      </ol>
+                      {% endif %}
+                      {% if project.collaborator.all %}
+                      <h4>Colaboradores del Proyectos</h4>
+                      <ol type="i">
+                        {% for newdoc in project.collaborator.all %}
+                          <li>{{ newdoc }}</li>
+                        {% endfor %}
+                      </ol>
+                      {% endif %}
+                    </p>
+                  </td>
+                </tr>
+                {% if project.proponent or project.counterpart_unit or project.co_executing_unit %}
+                <tr>
+                  <th>Unidades Participantes:</th>
+                  <td>
+                    {% if project.proponent %}
+                    <h4>Unidad Proponente:</h4>
+                    <lu>
+                      <li>{{ project.proponent }}</li>
+                    </lu>
+                    {% endif %}
+                    {% if project.counterpart_unit %}
+                    <h4>Unidad Contraparte:</h4>
+                    <lu>
+                      <li>{{ project.counterpart_unit }}</li>
+                    </lu>
+                    {% endif %}
+                    {% if project.co_executing_unit %}
+                    <h4>Unidades Co-Ejecutoras</h4>
+                    <lu>
+                      <li>{{ project.co_executing_unit }}</li>
+                    </lu>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endif %}
+                {% if project.start or project.end %}
+                <tr>
+                  <th>Validad:</th>
+                  {% if not project.end %}
+                    <td>{{ project.start|date:"d/m/y" }} - Actualmente</td>
+                  {% else %}
+                    <td>{{ project.start|date:"d/m/y" }} - {{ project.end|date:"d/m/y" }}</td>
+                  {% endif %}
+                </tr>
+                {% endif %}
+                {% if project.monitor_project %}
+                <tr>
+                  <th>Monitor:</th>
+                  <td>
+                    <lu>
+                      <li>{{ project.monitor_project }}</li>
+                    </lu>
+                  </td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+            
+            {% endif %}
+            {% endfor %}
+          {% endfor %}
+
+  </div>
+</div>
+<br>
+<br>
+
+{% endblock %}

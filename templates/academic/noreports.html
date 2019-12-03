@@ -1,0 +1,29 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+
+<div class="ui grid">
+	<div class="four wide column">
+	<h1>Reportes</h1>
+		<div class="ui inverted segment">
+			<div class="ui small inverted relaxed divided list">
+				<div class="item">
+  					<div class="content">
+    					<div class="header">Año de Reporte:</div><br>
+    					{% for report in allyears %}
+								<a href="{{ report.year }}">
+									<i class="circular blue bar chart icon"></i>
+									{{ report.year }}
+    							</a><br>
+		    			{% endfor %}
+  					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

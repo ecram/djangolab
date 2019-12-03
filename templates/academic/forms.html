@@ -1,0 +1,51 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+   <div class="ui justify aligned page grid overview segment">
+    <div class="sixteen wide row">
+      <div class="column">
+      
+<h1>Formularios y Documentos</h1>
+<i class="trophy icon"></i>
+<font>Los <b>formularios y documentos</b> pueden ser descargados de la siguiente lista:</font><br>
+
+<div class="ui grid">
+  <div class="sexteen wide column">
+  <table width="100%" class="ui definition table segment">
+    <tbody>
+      {% for form in forms %}
+        <tr>
+          <td rowspan="3">{{ form.date|date:"M d, Y" }}</td>
+          <td colspan="2" bgcolor="black">
+            <font color="white">
+              <i class="trophy icon"></i>
+              {{ form.name }}
+            </font>
+          </td>
+        </tr>
+        <tr>
+          <td>Nombre:<br></td>
+          <td>
+            <a href='{{ form.document.url }}'>
+              <font size=2><b><i class="download disk icon"></i> {{ form.name|safe }}</b><br></font>
+            </a>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+Para <b>subir nuevos formularios o documentos</b> contáctese con <a href='{% url "index" %}#address'> el instituto</a> o con su <a href='{% url "people" %}'> personal administrativo</a>.
+
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+{% endblock %}

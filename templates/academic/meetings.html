@@ -1,0 +1,63 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+<h1>Noticias:</h1>
+<i class="users icon"></i><b>Como participar de los eventos del Intituto: </b><br><br>
+<font>Para participar entra en contacto con el instituto.</font><br><br>
+<i class="calendar icon"></i><b>Próximos Eventos y Reuniones:</b>
+
+<div class="ui grid">
+  <div class="sexteen wide column">
+  <table width="100%" class="ui definition table segment">
+    <tbody>
+      {% for meeting in meetings %}
+        <tr>
+          <td rowspan="5">
+            {% if event.image_meeting %}
+              <img src="{{ meeting.image_meeting.url }}" width='180' height='180'>
+            {% endif %}
+          </td>
+            <td colspan="2" bgcolor="black">
+              <font color="white">
+                <i class="calendar icon"></i> {{ meeting.name_meeting }}
+              </font>
+            </td>
+        </tr>
+        <tr>
+          <td>Fecha del evento:</td>
+          <td><font size=2><b>{{ meeting.date_meeting }}</b></font></td>
+        </tr>
+        <tr>
+          <td>Descripción:</td>
+          <td><font size=2>{{ meeting.description_meeting }}</font></td>
+        </tr>
+        {% if meeting.site_meeting %}
+        <tr>
+          <td>Sitio Web:</td>
+          <td><a href="{{ meeting.site_meeting }}">{{ meeting.site_meeting }}</a></td>
+        </tr>
+        {% endif %}
+        {% if meeting.document_meeting %}
+        <tr>
+          <td>Documento:</td>
+          <td>
+            <a href='{{ meeting.document_meeting.url }}'>
+              <i class="book icon"></i> {{ meeting.document_meeting }}
+            </a>
+          </td>
+        </tr>
+        {% endif %}
+          <tr><td></td><td><br></td></tr>
+          <tr><td></td><td><br></td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<font>* Algunos eventos precisan que sea miembro del Instituto para participar.</font>
+
+{% endblock %}

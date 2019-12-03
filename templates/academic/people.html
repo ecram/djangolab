@@ -1,0 +1,333 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+  
+  <hr align="center" noshade="noshade" size="2" width="80%" />
+  <br>
+  <div class="ui grid">
+  <div class="four wide column">
+    <div class="ui inverted segment">
+      <div class="ui small inverted relaxed divided list"><font size="1">
+        {% if dir_count > 0 %}
+        <div class="item">
+            <div class="content">
+              <div class="header">
+                <i class="circular teal users icon"></i>
+                <a href="#dir">Director(a)</a></div>
+            </div>
+        </div>
+        {% endif %}
+        {% if cte_count > 0 %}
+        <div class="item">
+            <div class="content">
+              <div class="header">
+                <i class="circular teal users icon"></i>
+                <a href="#cte">Comité Técnico</a></div>
+            </div>
+        </div>
+        {% endif %}
+        {% if exe_count > 0 %}
+        <div class="item">
+            <div class="content">
+              <div class="header">
+                <i class="circular teal users icon"></i>
+                <a href="#exe">Comité Ejecutivo</a></div>
+            </div>
+        </div>
+        {% endif %}
+        {% if ced_count > 0 %}
+        <div class="item">
+            <div class="content">
+              <div class="header">
+                <i class="circular teal users icon"></i>
+                <a href="#ced">Comité Editor</a></div>
+            </div>
+        </div>
+        {% endif %}
+        {% if scp_count > 0 %}
+        <div class="item">
+            <div class="content">
+              <div class="header">
+                <i class="circular teal users icon"></i>
+                <a href="#scp">Comité de Becas</a></div>
+            </div>
+        </div>
+        {% endif %}
+        {% if res_count > 0 %}
+        <div class="item">
+            <div class="content">
+              <div class="header">
+                <i class="circular teal users icon"></i>
+                <a href="#ldi">Líneas de Investigación</a></div>
+            </div>
+        </div>
+        {% endif %}
+        {% if adm_count > 0 %}
+         <div class="item">
+            <div class="content">
+              <div class="header">
+                <i class="circular teal users icon"></i>
+                <a href="#pad">Personal Administrativo</a></div>
+            </div>
+        </div>
+        {% endif %}
+        {% if pm_count > 0 %}
+         <div class="item">
+            <div class="content">
+              <div class="header">
+                <i class="circular teal users icon"></i>
+                <a href="#past_member">Past Miembros</a></div>
+            </div>
+        </div>
+        {% endif %}
+        </font>
+      </div>
+    </div>
+  </div>
+
+  <div class="twelve wide column">
+  
+  {% if dir_count > 0 %}
+    <h2><b><a id="dir">Director(a):</a></b></h2>
+    <div class="ui four column left aligned stackable grid">
+      {% for member in members %}
+        {% if member.position.name_position == 'Director(a)' and member.past_member == False %}
+          <div class="column">
+            <table><tr><td>
+              <center>
+                <div class="ui blue segment">
+                  <img class="ui rounded image" src="{{ member.image.url }}" width="180">
+                </div>
+                <font color="Black" size='2'><b>{{ member.name }}</b><br>
+                  {% if member.position.name_position %}
+                    {{member.position.name_position}}
+                  {% endif %} <br>
+                  {% if member.personal_web %} <a href="{{ member.personal_web }}" title="Curriculo Vitae"><i class="globe icon"></i></a> | {% endif %}
+                  {% if member.personal_web %}<a href="{{ member.personal_web }}" title="Personal Web Site"><i class="external url icon"></i></a> | {% endif %}
+                  <a href="mailto:{{ member.email }}"><i class="home mail outline icon"></i></a>
+                </font>
+              </center>
+            </td></tr></table>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if cte_count > 0 %}
+    <h2><b><a id="cte">Comité Técnico:</a></b></h2>
+    <div class="ui four column left aligned stackable grid">
+      {% for position in positions %}
+      {% for member in members %}
+        {% if member.technical_committee == True and member.past_member == False and position.name_position == member.position.name_position %}
+          <div class="column">
+            <table><tr><td>
+              <center>
+                <div class="ui blue segment">
+                  <img class="ui rounded image" src="{{ member.image.url }}" width="180">
+                </div>
+                <font color="Black" size='2'><b>{{ member.name }}</b><br>
+                  {% if member.position.name_position %}
+                    {{member.position.name_position}}
+                  {% endif %} <br>
+                  {% if member.personal_web %} <a href="{{ member.personal_web }}" title="Curriculo Vitae"><i class="globe icon"></i></a> | {% endif %}
+                  {% if member.personal_web %}<a href="{{ member.personal_web }}" title="Personal Web Site"><i class="external url icon"></i></a> | {% endif %}
+                  <a href="mailto:{{ member.email }}"><i class="home mail outline icon"></i></a>
+                </font>
+              </center>
+            </td></tr></table>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% endfor %}
+    </div>
+  <p align="right"><a href="#">Go to top</a></p>
+  {% endif %}
+
+  {% if exe_count > 0 %}
+    <h2><b><a id="cte">Comité Ejecutivo:</a></b></h2>
+    <div class="ui four column left aligned stackable grid">
+      {% for position in positions %}
+      {% for member in members %}
+        {% if member.executive_committee == True and member.past_member == False and position.name_position == member.position.name_position %}
+          <div class="column">
+            <table><tr><td>
+              <center>
+                <div class="ui blue segment">
+                  <img class="ui rounded image" src="{{ member.image.url }}" width="180">
+                </div>
+                <font color="Black" size='2'><b>{{ member.name }}</b><br>
+                  {% if member.position.name_position %}
+                    {{member.position.name_position}}
+                  {% endif %} <br>
+                  {% if member.personal_web %} <a href="{{ member.personal_web }}" title="Curriculo Vitae"><i class="globe icon"></i></a> | {% endif %}
+                  {% if member.personal_web %}<a href="{{ member.personal_web }}" title="Personal Web Site"><i class="external url icon"></i></a> | {% endif %}
+                  <a href="mailto:{{ member.email }}"><i class="home mail outline icon"></i></a>
+                </font>
+              </center>
+            </td></tr></table>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% endfor %}
+    </div>
+  <p align="right"><a href="#">Go to top</a></p>
+  {% endif %}
+
+  {% if ced_count > 0 %}
+    <h2><b><a id="ced">Comité Editor:</a></b></h2>
+    <div class="ui four column left aligned stackable grid">
+      {% for position in positions %}
+      {% for member in members %}
+        {% if member.editor_committee == True and member.past_member == False and position.name_position == member.position.name_position %}
+          <div class="column">
+            <table><tr><td>
+              <center>
+                <div class="ui blue segment">
+                  <img class="ui rounded image" src="{{ member.image.url }}" width="180">
+                </div>
+                <font color="Black" size='2'><b>{{ member.name }}</b><br>
+                  {% if member.position.name_position %}
+                    {{member.position.name_position}}
+                  {% endif %} <br>
+                  {% if member.personal_web %} <a href="{{ member.personal_web }}" title="Curriculo Vitae"><i class="globe icon"></i></a> | {% endif %}
+                  {% if member.personal_web %}<a href="{{ member.personal_web }}" title="Personal Web Site"><i class="external url icon"></i></a> | {% endif %}
+                  <a href="mailto:{{ member.email }}"><i class="home mail outline icon"></i></a>
+                </font>
+              </center>
+            </td></tr></table>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% endfor %}
+    </div>
+  <p align="right"><a href="#">Go to top</a></p>
+  {% endif %}
+
+  {% if scp_count > 0 %}
+    <h2><b><a id="scp">Comité de Becas:</a></b></h2>
+    <div class="ui four column left aligned stackable grid">
+      {% for position in positions %}
+      {% for member in members %}
+        {% if member.scholarship_committee == True and member.past_member == False and position.name_position == member.position.name_position %}
+          <div class="column">
+            <table><tr><td>
+              <center>
+                <div class="ui blue segment">
+                  <img class="ui rounded image" src="{{ member.image.url }}" width="180">
+                </div>
+                <font color="Black" size='2'><b>{{ member.name }}</b><br>
+                  {% if member.position.name_position %}
+                    {{member.position.name_position}}
+                  {% endif %} <br>
+                  {% if member.personal_web %} <a href="{{ member.personal_web }}" title="Curriculo Vitae"><i class="globe icon"></i></a> | {% endif %}
+                  {% if member.personal_web %}<a href="{{ member.personal_web }}" title="Personal Web Site"><i class="external url icon"></i></a> | {% endif %}
+                  <a href="mailto:{{ member.email }}"><i class="home mail outline icon"></i></a>
+                </font>
+              </center>
+            </td></tr></table>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% endfor %}
+    </div>
+  <p align="right"><a href="#">Go to top</a></p>
+  {% endif %}
+
+  {% if res_count > 0 %}
+    <h2><b><a id="ldi">Líneas de Investigación:</a></b></h2>
+    <div class="ui four column left aligned stackable grid">
+      {% for position in positions %}
+      {% for topic in research_topics %}
+      {% for member in res_members %}
+        {% if member.research_topic.name == topic.name and member.past_member == False and position.name_position == member.position.name_position %}
+          <div class="column">
+            <table><tr><td>
+              <center>
+                <div class="ui blue segment">
+                  <img class="ui rounded image" src="{{ member.image.url }}" width="180">
+                </div>
+                <font color="Black" size='2'><b>{{ member.name }}</b><br>
+                  {% if member.position.name_position %}
+                    {{member.position.name_position}}
+                  {% endif %} <br>
+                  {{ topic.name }} <br>
+                  {% if member.personal_web %} <a href="{{ member.personal_web }}" title="Curriculo Vitae"><i class="globe icon"></i></a> | {% endif %}
+                  {% if member.personal_web %}<a href="{{ member.personal_web }}" title="Personal Web Site"><i class="external url icon"></i></a> | {% endif %}
+                  <a href="mailto:{{ member.email }}"><i class="home mail outline icon"></i></a>
+                </font>
+              </center>
+            </td></tr></table>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% endfor %}
+      {% endfor %}
+    </div>
+  <p align="right"><a href="#">Go to top</a></p>
+  {% endif %}
+
+  {% if adm_count > 0 %}
+    <h2><b><a id="pad">Personal Administrativo:</a></b></h2>
+    <div class="ui four column left aligned stackable grid">
+      {% for member in members %}
+        {% if member.position.name_position == 'Personal Administrativo' and member.past_member == False %}
+          <div class="column">
+            <table><tr><td>
+              <center>
+                <div class="ui blue segment">
+                  <img class="ui rounded image" src="{{ member.image.url }}" width="180">
+                </div>
+                <font color="Black" size='2'><b>{{ member.name }}</b><br>
+                  {% if member.position.name_position %}
+                    {{member.position.name_position}}
+                  {% endif %} <br>
+                  {% if member.personal_web %} <a href="{{ member.personal_web }}" title="Curriculo Vitae"><i class="globe icon"></i></a> | {% endif %}
+                  {% if member.personal_web %}<a href="{{ member.personal_web }}" title="Personal Web Site"><i class="external url icon"></i></a> | {% endif %}
+                  <a href="mailto:{{ member.email }}"><i class="home mail outline icon"></i></a>
+                </font>
+              </center>
+            </td></tr></table>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  <p align="right"><a href="#">Go to top</a></p>
+  {% endif %}
+
+  {% if pm_count > 0 %}
+    <h2><b><a id="past_member">Past Miembros:</a></b></h2>
+    <div class="ui four column left aligned stackable grid">
+      {% for member in members %}
+        {% if member.past_member == True %}
+          <div class="column">
+            <table><tr><td>
+              <center>
+                <div class="ui blue segment">
+                  <img class="ui rounded image" src="{{ member.image.url }}" width="180">
+                </div>
+                <font color="Black" size='2'><b>{{ member.name }}</b><br>
+                  {% if member.position.name_position %}
+                    {{member.position.name_position}}
+                  {% endif %} <br>
+                  {% if member.personal_web %} <a href="{{ member.personal_web }}" title="Curriculo Vitae"><i class="globe icon"></i></a> | {% endif %}
+                  {% if member.personal_web %}<a href="{{ member.personal_web }}" title="Personal Web Site"><i class="external url icon"></i></a> | {% endif %}
+                  <a href="mailto:{{ member.email }}"><i class="home mail outline icon"></i></a>
+                </font>
+              </center>
+            </td></tr></table>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  <p align="right"><a href="#">Go to top</a></p>
+  {% endif %}
+
+  </div>
+  <br>
+</div>
+
+{% endblock %}

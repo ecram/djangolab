@@ -1,0 +1,136 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+
+{% for instituto in institutos %}
+  <hr align="center" noshade="noshade" size="2" width="80%" />
+  <br>
+  <div class="ui grid justified aligned segment">
+    <div class="two wide column">
+      <!-- Free Space -->
+    </div>
+    <div class="twelve wide column">
+      <h1>{{ instituto.name }} ({{ instituto.acronym }})</h1>
+      <p>
+        El Instituto de Investigaciones Físicas (IIF), es dependiente de la Carrera de Física de la Facultad de Ciencias Puras y Naturales (FCPN) de la Universidad Mayor de San Andrés (UMSA), fue creado el año 1952 para dedicarse, en gran parte, al estudio de los Rayos Cósmicos en altura, como consecuencia del resultado del primer trabajo realizado en Chacaltaya el año 1946-1947, con resultados que condujeron a la entrega de dos premios nobel. Con los años, el IIF ha incrementado las líneas de investigación, actualmente son: Física de la Atmósfera, Física Teórica, Geofísica, Física Aplicada y Rayos Cósmicos, Los ambientes están en cuatro diferentes predios; el primero en el Campus Universitario de Cota Cota, compartiendo oficinas y laboratorios con la Carrera de Física; el segundo en la Montaña de Chacaltaya en los Laboratorios de Rayos Cósmicos y Atmósfera (GAW) a 5240 msnm.; el tercero, en la localidad de Patacamaya con un primer Observatorio Geomagnético y estudio de energías alternativas, y el cuarto, más reciente, en la localidad de Villa Remedios que involucra un segundo observatorio Geomagnético. 1952 (Creación del Laboratorio de Física Cósmica de Chacaltaya) 1973 (El LFC se convierte en Instituto de Investigaciones Físicas).
+      </p>
+      <div style="text-align: center">
+        <a href="{{ instituto.website }}"><img src="/static/academic/img/logo.png" height="128"></a>
+      </div>
+
+      <h2>Misión:</h2>
+      <p>
+        El IIF tiene como misión generar, desarrollar, adaptar y transferir conocimientos científicos e innovaciones en el campo de la Física; contribuyendo al desarrollo departamental, nacional y regional, apoyando a la formación de profesionales competitivos en investigaciónes Físicas.
+      </p>
+
+      <h2>Visión:</h2>
+      <p>
+        El IIF se constituye en un referente en investigación e innovación científica en el área de Física a nivel nacional e internacional.
+      </p>
+
+      <h2>Áreas de Investigación:</h2>
+      <p>
+      	El IIF se organiza en cinco grupos de investigación a través de los cuales se desarrollan sus líneas de investigación. Entre estos se encuentran:
+      </p>
+      <ol>
+      	<li>Rayos Cósmicos. Trabaja en el estudio y registro de rayos y partículas cósmicas.</li>
+      	<li>Física de la Atmosfera. Trabaja en el estudio y medición de la concentración de gases, radiación y aerosoles en la atmosfera y otras variables asociadas al clima.</li>
+      	<li>Geofisica. Trabaja en la medición y análisis de campos geomagnéticos y variables hidrológicos y meteorológicos.</li>
+      	<li>Física teórica. Trabaja en el estudio de dinámicas no lineales y la estructura de sistemas complejos.</li>
+      	<li>Física Aplicada. Trabaja en el estudio y análisis de diferentes parámetros de materia condensada y materiales mesoscopicos.</li>
+      </ol>
+
+      <h2>Producción Intelectual:</h2>
+      <p>El IIF realiza la publicación de la <a href="http://www.fiumsa.edu.bo/rbf/index.html">Revista Boliviana de Fisica (RBF)</a>. La revista inicio su publicación en 1952. La revista esta indexada en la Red Scielo Bolivia, Latindex, Periodica, Lilacs y Dialnet y tiene asignado su ISSN en versión impresa (1562-3823).</p>
+
+      <h2>Servicios:</h2>
+      <p>El IIF presta diversos servicios especializados a empresas publicas y privadas a través del Laboratorio de Materia Condensada y Ciencia de Materiales. Entre los servicios que brinda el instituto se puede mencionar la caracterización de materiales mediante la aplicación de ensayos destructivos y ensayos no destructivos entre otros.</p>
+
+      <h2>Interacción Social:</h2>
+      <p>Con relación a las actividades de interacción social, el IIF cuenta con diferentes programas para la difusión de sus actividades científicas. Entre estos programas se encuentran:</p>
+      <ol>
+      	<li>Programa de difusión de la Ciencias, con actividades como la feria física a puertas abiertas (FAPA), artículos publicados en prensa y cápsulas radiales.</li>
+      	<li>Programa del planetario Max Schreier, con actividades como las sesiones del planetario, las ferias de Astronomía para todos y Astronomía Cultural.</li>
+      	<li>Programa de difusión de los resultados de la Investigación, con actividades como la Campaña de Índice de Radiación y ultravioleta.</li>
+      	<li>Organización de la Olimpiada Boliviana de Astronomía y Astrofísica y la Olimpiada Boliviana de Física.</li>
+      </ol>
+      
+<div class="ui horizontal divider"><i class="loading icon"></i></div>
+
+<table width="100%" class="ui definition table segment">
+  <tbody>
+    <tr>
+      <td colspan="3" bgcolor="black"><font color="white">{{ instituto.name }}</font></td>
+    </tr>
+    <tr>
+      <th>Sigla</th>
+      <th>Fecha de creación</th>
+      <th>Nº Resolución de creación</th>
+    </tr>
+    <tr align="center">
+      <td><font size="2">{{ instituto.acronym }}</font></td>
+      {% if instituto.inauguration %}
+        <td><font size="2">{{ instituto.inauguration }}</font></td>
+      {% endif %}
+      {% if instituto.resolution %}
+        <td><font size="2">{{ instituto.resolution }}</font></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th><font>Dependencia</font></th>
+      <td colspan="2">{{ instituto.career }} - {{ instituto.faculty }}</td>
+    </tr>
+    <tr>
+      <th>Dirección:</th>
+      <td colspan="2">{{ instituto.address }}</td>
+    </tr>
+    {% if instituto.phone %}
+    <tr>
+      <th>Teléfono:</th>
+      <td colspan="2">{{ instituto.phone }}</td>
+    </tr>
+    {% endif %}
+    {% if instituto.fax %}
+    <tr>
+      <th>Fax:</th>
+      <td colspan="2">{{ instituto.fax }}</td>
+    </tr>
+    {% endif %}
+    {% if instituto.pob %}
+    <tr>
+      <th>Casilla:</th>
+      <td colspan="2">{{ instituto.pob }}</td>
+    </tr>
+    {% endif %}
+    {% if instituto.website %}
+    <tr>
+      <th>Página Web:</th>
+      <td colspan="2"><a href="{{ instituto.website }}">{{ instituto.website }}</a></td>
+    </tr>
+    {% endif %}
+    <tr>
+      <th>E-Mail:</th>
+      <td colspan="2"><a href="mailto:{{ instituto.email }}">{{ instituto.email }}</a><br></td>
+    </tr>
+  {% endfor %}
+  <tr>
+    <th >Líneas de Investigación</th>
+    <td colspan="2" style="text-align:justify">
+      <ol>
+        {% for topic in topics %}
+        <a href='{% url "topics" %}'><li>{{ topic.name }}</li></a>
+        {% endfor %}
+      </ol>
+    </td>
+  </tr>
+</tbody>
+</table>  
+
+<div class="ui horizontal divider"></div>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+                      "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <?xml version="1.1" encoding="utf-8"?> 
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="IIF - Instituto de Investigaciones Físicas">
+  <meta name="author" content="Marcelo Palma Salas">
+  <link rel="shortcut icon" href="{% static 'academic/img/logo.ico' %}">
+  <meta name="google-site-verification" content="-K-3JYoZyC3vJWMvmi5cMwsUvNq10Eo94Yst902VcwY" />
+
+  <!-- Site Properities -->
+  <title>IIF - Instituto de Investigaciones Físicas</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+
+   <link rel="stylesheet" type="text/css" href="{% static 'academic/css/semantic.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'academic/css/homepage.css' %}">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+  <script src="{% static 'academic/js/semantic.js' %}"></script>
+  <script src="{% static 'academic/js/homepage.js' %}"></script>
+  <script src="{% static 'academic/js/main.js' %}"></script>
+
+	
+		{% block head %}
+		<title>django-publications</title>
+		<style type="text/css">
+			body {
+				font-family: "Hiragino Sans GB", "Helvetica Neue", "Lucida Grande", Helvetica, Arial, sans-serif;
+				font-size: 10pt;
+				line-height: 14pt;
+				padding: 0px; /*padding: 20px;*/
+			}
+
+			h1 {
+				font-size: 14pt;
+				font-weight: normal;
+				line-height: 24pt;
+				margin: 0px;
+				padding: 0px;
+				color: #aaa;
+			}
+
+			h2 {
+				font-size: 14pt;
+				font-weight: bold;
+			}
+
+			a {
+				text-decoration: none;
+				color: #999;
+			}
+
+			.special_links {
+				vertical-align: middle;
+				float: right;
+				text-align: right;
+			}
+
+			.special_links a {
+				line-height: 24pt;
+				vertical-align: middle;
+			}
+
+			a.author, a.title {
+				color: black;
+			}
+
+			a.keyword {
+				color: #777;
+				background: #ddd;
+				padding: 2px 4px;
+				font-size: 9pt;
+				line-height: 18pt;
+				text-shadow: #eee 0px 1px 0px;
+
+				border-bottom: 1px solid #aaa;
+				border-right: 1px solid #ccc;
+
+				border-radius: 4px;
+				-moz-border-radius: 4px;
+				-webkit-border-radius: 4px;
+			}
+
+			a.keyword:hover {
+				color: #666;
+				background: #ccc;
+			}
+
+			hr {
+				border: 0px;
+				border-top: 1px solid #ddd;
+				margin: 5px 0px 15px;
+				height: 0px;
+				padding: 0px;
+			}
+
+			pre {
+				white-space: pre-wrap;
+				white-space: -moz-pre-wrap !important;
+				white-space: -pre-wrap;
+				white-space: -o-pre-wrap;
+				word-wrap: break-word;
+			}
+		</style>
+		{% endblock %}
+	</head>
+	<body id="home">
+		<style type="text/css">.fijo {position:fixed !important; top:0px; z-index:10 !important}
+		</style>
+		<!--left: 11%; -->
+
+		<div class="ui inverted page grid masthead segment">
+    <div class="column">
+      <div class="fijo">
+        <div class="ui inverted pointing menu">
+          <div class="header item">
+            <a href='{% url "index" %}'>
+            <i class="home icon"></i> IIF </a>
+          </div>
+          <div class="right menu">
+            <div class="ui top right pointing mobile dropdown link item">
+              Menú
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <a class="item" href='{% url "about" %}'><i class="lab icon"></i>Acerca</a>
+                <a class="item" href='{% url "people" %}'><i class="users icon"></i>Personal</a>
+                <a class="item" href='{% url "projects" %}'><i class="open folder icon"></i>Investigación</a>
+                <a class="item" href='{% url "index" %}publications'><i class="text file icon"></i>Publicaciones</a>
+                <a class="item" href='http://www.fiumsa.edu.bo/rbf/index.html'><i class="calendar icon"></i>Revista RBF</a>
+                <a class="item" href='{% url "conferences" %}'><i class="info icon"></i>Eventos</a>
+                <a class="item" href='{% url "courses" %}'><i class="book icon"></i>Cursos</a>
+                <a class="item" href='{% url "meetings" %}'><i class="calendar icon"></i>Noticias</a>
+                <a class="item" href='{% url "services" %}'><i class="globe icon"></i>Servicios</a>
+                <a class="item" href='{% url "reports" %}'><i class="bar chart icon"></i>Reportes</a>
+              </div>
+            </div>
+            <a class="item" href='{% url "about" %}'><i class="lab icon"></i>Acerca</a>
+            <a class="item" href='{% url "people" %}'><i class="users icon"></i>Personal</a>
+            <a class="item" href='{% url "projects" %}'><i class="open folder icon"></i>Investigación</a>
+            <a class="item" href='{% url "index" %}publications'><i class="text file icon"></i>Publicaciones</a>
+            <a class="item" href='http://www.fiumsa.edu.bo/rbf/index.html'><i class="calendar icon"></i>Revista RBF</a>
+            <a class="item" href='{% url "conferences" %}'><i class="info icon"></i>Eventos</a>
+            <a class="item" href='{% url "courses" %}'><i class="book icon"></i>Cursos</a>
+            <a class="item" href='{% url "meetings" %}'><i class="calendar icon"></i>Noticias</a>
+            <a class="item" href='{% url "services" %}'><i class="globe icon"></i>Servicios</a>
+            <a class="item" href='{% url "reports" %}'><i class="bar chart icon"></i>Reportes</a>
+          </div>
+        </div>
+      </div>
+      <br><br>
+    </div>
+  </div>
+
+  <div class="ui justify aligned page grid overview segment">
+    <div class="sixteen wide row">
+      <div class="column">
+	    	<br>
+			{% block content %}
+			{% endblock %}
+			<br><br>
+		</div>
+	</div>
+</div>
+
+  <div class="ui inverted teal page grid segment">
+    <div class="sixteen wide column">
+    <br>
+      <div class="ui four column stackable grid">
+        <div class="column">
+          <div class="ui header">Servicios del Instituto</div>
+          <div class="ui inverted link list">
+            {% for service in services %}
+              <a class="item" href='{% url "services" %}'>{{ service.name_services }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="column">
+          <a href="http://umsa.bo/web/guest/home" style="color:white;"><div class="ui header">UMSA</div></a>
+          <div class="ui inverted link list">
+            <a class="item" href="http://www.umsa.bo/web/guest/quienes-somos">Acerca</a>
+            <a class="item" href="http://www.umsa.bo/historia">Historia</a>
+            <a class="item" href="http://www.umsa.bo/web/guest/institutos">Investigación</a>
+            <a class="item" href="http://www.umsa.bo/web/guest/oferta">Oferta Académica</a>
+            <a class="item" href="http://www.lacatedra.umsa.bo/home">Noticias</a>
+            <a class="item" href="http://www.umsa.bo/web/guest/eventos">Eventos</a>
+            <a class="item" href="http://www.umsa.bo/web/guest/servicios">Servicios</a>
+            <a class="item" href="http://www.umsa.bo/web/relaciones-internacionales">Relaciones Internacionales</a>
+          </div>
+        </div>
+        <div class="column">
+          <a href="http://www.fcpn.edu.bo/" style="color:white"><div class="ui header">FCPN</div></a>
+          <div class="ui inverted link list">
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/facultad.jsp">Historia</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/carreras_1.jsp">Pregrado</a>
+            <a class="item" href="http://pre.fcpn.edu.bo/prefas/">Admisiones</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/institutos_1.jsp">Investigación</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/publicaciones.jsp">Publicaciones</a>
+            <a class="item" href="http://ubikt.fcpn.edu.bo/#!/">Direcciones y Telefonía</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/agenda.jsp">Calendario Académico</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/contactos.jsp">Contáctenos</a>
+          </div>
+        </div>
+        <div class="column">
+          <a href="http://investigacion.fcpn.edu.bo" style="color:white"><div class="ui header">Contactenós</div></a><br>
+          <addr>
+            Unidad de Investigación (UFFI/UFDAC)<br>
+            Facultad de Ciencias Puras y Naturales (FCPN)<br>
+            Edificio Antiguo Monoblock Central
+            Kardex - 2do Piso<br>
+            Av. Villazón # 1995<br>
+            La Paz - Bolivia<br>
+        +591 (2) 261-2906
+          </addr>
+        </div>
+      </div>
+    </div>
+
+  <!--
+  <div class="sixteen wide column">
+    <center>
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><font color="Black">Djangolab 2</span> by </font><a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/ecram/djangolabv2" property="cc:attributionName" rel="cc:attributionURL"><font color="Black">M.I.P. Salas</font></a><br><font color="Teal"> is licensed under a </font><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:teal">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a><font color="Teal">.</font>
+      </span></span>
+        
+        <br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://scholar.google.es/citations?hl=es&pli=1&user=9idDJAsAAAAJ" rel="dct:source">https://scholar.google.es/citations?hl=es&pli=1&user=9idDJAsAAAAJ</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="marcelpalmas@gmail.com" rel="cc:morePermissions">marcelpalmas@gmail.com</a>.
+    </center>
+  </div>
+  -->
+</div>
+</body>
+
+</html>

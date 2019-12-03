@@ -1,0 +1,62 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+      
+<h1>Líneas de Investigación del Instituto</h1>
+<i class="trophy icon"></i>
+<font size=2 color="black">Las lineas de investigación que el instituto desarrolla son:<br><br></font>
+
+<div class="ui grid">
+  <div class="sexteen wide column">
+  <table width="100%" class="ui definition table segment">
+    <tbody>
+      {% for topic in topics %}
+        <tr>
+          <td rowspan="5" align="center">
+            <img src="{{ topic.index_image.url}}" height='110'>
+          </td>
+            <td colspan="2" bgcolor="black"><font color="white"><i class="globe icon"></i>{{ topic.name }}</font></td>
+        </tr>
+        <tr>
+          <td>Área de Investigación:</td>
+          <td><font size=2><b>{{ topic.area }}</b></font></td>
+        </tr>
+        {% if topic.date %}
+        <tr>
+          <td>Fecha de creación:</td>
+          <td><font size=2>{{ topic.date }}</font></td>
+        </tr>
+        {% endif %}
+        {% if topic.topic_description %}
+        <tr>
+          <td>Descripción:</td>
+          <td><font size=2>{{ topic.topic_description }}</font></td>
+        </tr>
+        {% endif %}
+        {% if topic.topic_document %}
+        <tr>
+          <td>Documento:</td>
+          <td>
+            <a href='{{ topic.topic_document.url }}'>
+              <i class="book icon"></i> {{ topic.topic_document }}
+            </a>
+          </td>
+        </tr>
+        {% endif %}
+        <tr><td></td><td><br></td></tr>
+        <tr><td></td><td><br></td></tr>
+        <tr><td></td><td><br></td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+Para <b>introducir nuevas líneas de investigación</b> en el Instituto, envíe un correo electrónico al email institucional o entre en contacto con el personal administrativo.<br>
+
+  <br>
+  <br>
+{% endblock %}

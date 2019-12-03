@@ -1,0 +1,15 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<br>
+<h1><b>Instituto sin NOTICIAS</b></h1>
+<br>
+Para <b>introducir nuevas noticias</b> contáctese con <a href='{% url "index" %}#address'> el instituto</a> o con su <a href='{% url "people" %}'> personal administrativo</a>.
+<br>
+
+{% endblock %}

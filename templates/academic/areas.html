@@ -1,0 +1,55 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<h1>Áreas de Investigación del Instituto</h1>
+<i class="trophy icon"></i>
+<font size=2 color="black">Las Áreas de investigación que el instituto desarrolla son:<br><br></font>
+
+<div class="ui grid">
+  <div class="sexteen wide column">
+  <table width="100%" class="ui definition table segment">
+    <tbody>
+      {% for area in areas %}
+        <tr>
+          <td rowspan="4" align="center">
+            <img src="{% static 'academic/img/logo.png'%}" height='110'>
+          </td>
+            <td colspan="2" bgcolor="black"><font color="white"><i class="globe icon"></i>{{ area.name }}</font></td>
+        </tr>
+        {% if area.date %}
+        <tr>
+          <td>Fecha de creación:</td>
+          <td><font size=2>{{ area.date }}</font></td>
+        </tr>
+        {% endif %}
+        {% if area.area_description %}
+        <tr>
+          <td>Descripción:</td>
+          <td><font size=2>{{ area.area_description }}</font></td>
+        </tr>
+        {% endif %}
+        {% if area.area_document %}
+        <tr>
+          <td>Documento:</td>
+          <td>
+            <a href='{{ area.area_document.url }}'>
+              <i class="book icon"></i> {{ area.area_document }}
+            </a>
+          </td>
+        </tr>
+        {% endif %}
+        <tr><td></td><td><br></td></tr>
+        <tr><td></td><td><br></td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+<br>
+Para <b>introducir nuevas áreas de investigación</b> contáctese con <a href='{% url "index" %}#address'> el instituto</a> o con su <a href='{% url "people" %}'> personal administrativo</a>.
+
+{% endblock %}

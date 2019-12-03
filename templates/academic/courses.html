@@ -1,0 +1,71 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+  <h1>Cursos:</h1>
+  <font size=2 color="black">Los cursos que brindan nuestros docentes investigadores son:<br><br></font>
+<!--  <h3>Details:</h3>
+-->
+<div class="ui grid">
+  <div class="four wide column">
+    <div class="ui inverted segment">
+      <div class="ui small inverted relaxed divided list">
+        <div class="item">
+            <div class="content">
+              <div class="header">Courses:</div>
+              {% for course in courses %}
+              <a href="#{{course.id}}">
+              <i class="circular teal user icon"></i>
+                {{ course.code_course }}</a><br>
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="twelve wide column">
+  {% for course in courses %}<a id="{{ course.id }}"></a>
+    <table width="100%" class="ui celled definition table segment">
+      <tbody>
+        <tr>
+          <td colspan="2" bgcolor="black"><font color="white"><i class="book icon"></i> {{ course.code_course }} - {{ course.name_course }}</font></td>
+        </tr>
+        {% if course.description_course %}
+        <tr>
+          <td>Descripción:</td>
+          <td><font size=2>{{ course.description_course }}</font></td>
+        </tr>
+        {% endif %}
+        {% if course.prerequisites_course %}
+        <tr>
+          <td>Pre-requisitos:</td>
+          <td><font size=2>{{ course.prerequisites_course }}</font></td>
+        </tr>
+        {% endif %}
+        {% if course.professor_course %}
+        <tr>
+          <td>Docente:</td>
+          <td><font size=2>{{ course.professor_course }}</font></td>
+        </tr>
+        {% endif %}
+        {% if course.website_course %}
+        <tr>
+          <td>Sitio Web:</td>
+          <td><font size=2><a href="{{ course.website_course }}" target="_blank">{{ course.website_course | urlize }}</a></font></td>
+        </tr>
+        {% endif %}
+        {% if course.course_document %}
+        <tr>
+          <td>Documento:</td>
+          <td><font size=2><a href="{{ course.course_document.url }}" target="_blank">{{ course.course_document }}</a></font></td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

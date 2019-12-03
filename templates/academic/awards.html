@@ -1,0 +1,56 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+   <div class="ui justify aligned page grid overview segment">
+    <div class="sixteen wide row">
+      <div class="column">
+      
+<h1>Premios y Reconocimientos</h1>
+<i class="trophy icon"></i>
+<font>Los <b>premios y reconocimientos </b> obtenidos por los investigadores del Instituto son descritos a seguir:</font><br>
+
+<div class="ui grid">
+  <div class="sexteen wide column">
+  <table width="100%" class="ui definition table segment">
+    <tbody>
+      {% for award in awards %}
+        <tr>
+          <td rowspan="3">{{ award.date|date:"M d, Y" }}</td>
+          <td colspan="2" bgcolor="black">
+            <font color="white">
+              <i class="trophy icon"></i>
+              {{ award.award }} para  
+                {% for person in award.awarded.all %}
+                  {{ person }}, 
+                {% endfor %}
+            </font>
+          </td>
+        </tr>
+        {% if award.web_award %}
+        <tr>
+          <td>Sitio Web:</td>
+          <td><a href="{{ award.web_award }}">{{ award.web_award }}</a></td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td>Description:</td>
+          <td><font size=2>{{ award.description_award }}</font></td>
+        </tr>
+        <tr><td></td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+Para <b>introducir nuevos Premios</b> contáctese con <a href='{% url "index" %}#address'> el instituto</a> o con su <a href='{% url "people" %}'> personal administrativo</a>.
+
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+{% endblock %}

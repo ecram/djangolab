@@ -1,0 +1,447 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+
+<div class="ui grid">
+	<div class="four wide column">
+	<h1>Reportes</h1>
+		<div class="ui inverted segment">
+			<div class="ui small inverted divided list">
+				<div class="item">
+  					<div class="content">
+    					<div class="header">Año de Reporte:</div><br>
+    					{% for item in allyears %}
+    						<i class="circular blue bar chart icon"></i>
+							<a href="/reportes/{{ item.year }}">
+								{{ item.year }}
+    						</a><br>
+		    			{% endfor %}
+  					</div>
+				</div>
+			</div>
+		<hr align="center" noshade="noshade" size="2" width="100%" />
+		<font size="2">
+			<ol class='ui small inverted list'>
+			  {% if are_count > 0 or top_count > 0 %}
+			  	<a class="item" href="#ali"><li>Áreas y Líneas de Investigación</li></a>
+			  {% endif %}
+			  <a class="item" href="#per"><li>Personal del Instituto
+			  <ol>
+			  	{% if dir_count > 0 %}
+			  		<a class="item" href="#dir"><li>Director(a)</li></a>
+			  	{% endif %}
+			  	{% if cte_count > 0 %}
+			  		<a class="item" href="#cte"><li>Comité Técnico</li></a>
+			  	{% endif %}
+			  	{% if cej_count > 0 %}
+			  		<a class="item" href="#cej"><li>Comité Ejecutivo</li></a>
+			  	{% endif %}
+			  	{% if ced_count > 0 %}
+			  		<a class="item" href="#ced"><li>Comité Editor</li></a>
+			  	{% endif %}
+			  	{% if cbe_count > 0 %}
+			  		<a class="item" href="#cbe"><li>Comité de Becas</li></a>
+			  	{% endif %}
+			  	{% if res_count > 0 %}
+			  		<a class="item" href="#lin"><li>Por Líneas de Investigación</li></a>
+			  	{% endif %}
+			  	{% if adm_count > 0 %}
+			  		<a class="item" href="#pad"><li>Personal Administrativo</li></a>
+			  	{% endif %}
+			  </ol></li></a>
+				{% if pro_count > 0 %}
+				  <a class="item" href="#prj"><li>Proyectos</li></a>
+				{% endif %}
+				{% if pub_count > 0 %}
+				  <a class="item" href="#pub"><li>Publicaciones</li></a>
+				{% endif %}
+				{% if awa_count > 0 %}
+				  <a class="item" href="#awa"><li>Premios</li></a>
+				{% endif %}
+				{% if ser_count > 0 %}
+				  <a class="item" href="#ser"><li>Servicios</li></a>
+				{% endif %}
+				{% if cou_count > 0 %}
+				  <a class="item" href="#cou"><li>Cursos</li></a>
+				{% endif %}
+				<a class="item" href="#ind"><li>Indicadores del Instituto</li></a>
+			  </ol>
+			</font>
+		</div>
+	</div>
+
+	<div class="twelve wide column">
+	<br><br><br>
+	<div class="ui secondary segment">
+		<center><h2><b><font color="black">Reporte {{ year }} del III</font></b></h2></center>
+
+		{% if are_count > 0 or top_count > 0 %}
+			<a id="ali"><h3>1. Áreas y Líneas de Investigación</h3></a>
+			{% if are_count > 0 %}
+				<a id="ali"><h4>1.1 Áreas de Investigación</h4></a>
+				<font size="2" color="black">
+					<ul class="ui list">
+						{% for area in areas %}
+							<li>{{ area.name }}</li>
+						{% endfor %}
+					</ul>
+				</font>
+			{% endif %}
+			{% if top_count > 0 %}
+				<a id="ali"><h4>1.2 Líneas de Investigación</h4></a>
+				<font size="2" color="black">
+					<ul class="ui list">
+						{% for topic in topics %}
+							<li>{{ topic.name }} ({{ topic.area.name }})</li>
+						{% endfor %}
+					</ul>
+				</font>
+			{% endif %}
+		<div class="ui horizontal icon divider"><i class="bar chart icon"></i></div>
+		{% endif %}
+
+		<a id="per"><h3>2. Personal de Instituto</h3></a>
+		{% if dir_count > 0 %}
+			<a id="dir"><h4>2.1 Director(a)</h4></a>
+			<font size="2" color="black">
+				<ul class="ui list">
+					{% for person in people %}
+						{% if person.position.name_position == 'Director(a)' %}
+							<li>{{ person.name }}</li>
+						{% endif %}
+      				{% endfor %}
+				</ul>
+			</font>
+		{% endif %}
+		{% if cte_count > 0 %}
+			<a id="cte"><h4>2.2 Comité Técnico</h4></a>
+			<font size="2" color="black">
+				<ul class="ui list">
+					{% for position in positions %}
+					{% for person in people %}
+						{% if person.technical_committee == True and position.name_position == person.position.name_position %}
+							<li>{{ person.name }}, {{ person.position.name_position }}</li>
+						{% endif %}
+      				{% endfor %}
+      				{% endfor %}
+				</ul>
+			</font>
+		{% endif %}
+		{% if cej_count > 0 %}
+			<a id="cej"><h4>2.3 Comité Ejecutivo</h4></a>
+			<font size="2" color="black">
+				<ul class="ui list">
+					{% for position in positions %}
+					{% for person in people %}
+						{% if person.executive_committee == True and position.name_position == person.position.name_position %}
+							<li>{{ person.name }}, {{ person.position.name_position }}</li>
+						{% endif %}
+      				{% endfor %}
+      				{% endfor %}
+				</ul>
+			</font>
+		{% endif %}
+	  	{% if ced_count > 0 %}
+	  		<a id="ced"><h4>2.4 Comité Editor</h4></a>
+	  		<font size="2" color="black">
+				<ul class="ui list">
+					{% for position in positions %}
+					{% for person in people %}
+						{% if person.editor_committee == True and position.name_position == person.position.name_position %}
+							<li>{{ person.name }}, {{ person.position.name_position }}</li>
+						{% endif %}
+      				{% endfor %}
+      				{% endfor %}
+				</ul>
+			</font>
+	  	{% endif %}
+	  	{% if cbe_count > 0 %}
+	  		<a id="cbe"><h4>2.5 Comité de Becas</h4></a>
+	  		<font size="2" color="black">
+				<ul class="ui list">
+					{% for position in positions %}
+					{% for person in people %}
+						{% if person.scholarship_committee == True and position.name_position == person.position.name_position %}
+							<li>{{ person.name }}, {{ person.position.name_position }}</li>
+						{% endif %}
+      				{% endfor %}
+      				{% endfor %}
+				</ul>
+			</font>
+	  	{% endif %}
+	  	{% if res_count > 0 %}
+	  		<a id="lin"><h4>2.6 Por Líneas de Investigación</h4></a>
+	  		<font size="2" color="black">
+				<ul class="ui list">
+					{% for topic in topics %}
+						<li><b>{{ topic.name }}</b><br>
+						<ul>
+      					{% for position in positions %}
+						{% for person in people %}
+							{% if person.research_topic.name == topic.name and position.name_position == person.position.name_position %}
+							<li>{{ person.name }}, {{ person.position.name_position }}</li>
+						{% endif %}
+      				{% endfor %}
+      				{% endfor %}</ul>
+      				{% endfor %}
+				</ul>
+			</font>
+	  	{% endif %}
+	  	{% if adm_count > 0 %}
+	  		<a id="pad"><h4>2.7 Personal Administrativo</h4></a>
+	  		<font size="2" color="black">
+				<ul class="ui list">
+					{% for person in people %}
+        				{% if person.position.name_position == 'Personal Administrativo' %}
+        					<li>{{ person.name }}</li>
+        				{% endif %}
+        			{% endfor %}
+				</ul>
+			</font>
+	  	{% endif %}
+
+		<div class="ui horizontal icon divider"><i class="bar chart icon"></i></div>
+
+		{% if pro_count > 0 %}
+		<a id="prj"><h3>3. Proyectos</h3></a>
+			<font size="2" color="black">
+			<ul class="ui list">
+				{% for project in projects %}
+					<li><b>{{ project.acronym }}: {{ project.name }}</b>
+						<ul>
+							<li><b>Coordinador:</b> &nbsp {{ project.chair }} (<a href="mailto:{{ project.chair.email }}">{{ project.chair.email }})</a></li>
+							{% if project.start %}
+								<li><b>Validad:</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+									{% if project.end == None %}
+										<td><font size=2>{{ project.start.year }} - Current</font></td>
+									{% else %}
+										<td><font size=2>{{ project.start.year }} - {{ project.end.year }}</font></td>
+									{% endif %}
+								</li>
+							{% endif %}
+							{% if project.description %}
+								<li><b>Descripción:</b> &nbsp &nbsp &nbsp {{ project.description }}</li>
+							{% endif %}
+							{% if project.website %}
+								<li><b>Sitio Web:</b> &nbsp &nbsp &nbsp <a href="{{ project.website }}">{{ project.website }}</a></li>
+							{% endif %}
+							</ul>
+						</li>
+				{% endfor %}
+			</ul>
+			</font>
+		<div class="ui horizontal icon divider"><i class="bar chart icon"></i></div>
+		{% endif %}
+
+		{% if pub_count > 0 %}
+		<a id="pub"><h3>4. Publicaciones</h3></a>
+			<font size="2" color="black">
+			<ul class="ui list">
+			{% for publication in publications %}
+				<li>
+					{% if publication.authors_escaped|length > 8 %}
+						{% for author, author_escaped in publication.authors_escaped|slice:":8" %}
+						<a href="/publications/{{ author_escaped }}/" class="author"><font color="black">{{ author }}</font></a>,
+						{% endfor %} <i>et al.</i>
+					{% else %}
+						{% for author, author_escaped in publication.authors_escaped %}
+						<a href="/publications/{{ author_escaped }}/" class="author"><font color="black">{{ author }}</font></a>{% if not forloop.last %}{% if forloop.revcounter == 2 %}{% if not forloop.first %},{% endif %} and {% else %}, {% endif %}{% endif %}
+						{% endfor %}
+					{% endif %}
+					<b><a href="/publications/{{ publication.pk }}/">{{ publication.title }}</a></b>
+					{% if publication.journal %}
+						<i>{{ publication.journal }}{% if publication.note %} ({{ publication.note }}){% endif %},
+						{% if publication.volume %}<b>{{ publication.volume }}</b>{% if publication.number %}({{ publication.number }}){% endif %},{% endif %}
+						{% if publication.pages %}{{ publication.pages }},{% endif %}
+						{{ publication.year }}
+						</i><br />
+					{% else %}
+						<i>{% if publication.book_title %}{{ publication.book_title }}{% if publication.note %} ({{ publication.note }}){% endif %},{% endif %}
+						{% if publication.publisher %}{{ publication.publisher }},{% endif %}
+						{% if publication.institution %}{{ publication.institution }},{% endif %}
+						{{ publication.year }}{% if publication.isbn %},
+						ISBN {{ publication.isbn }}{% endif %}</i><br />
+					{% endif %}
+				</li>
+			{% endfor %}
+			</ul>
+			</font>
+		<div class="ui horizontal icon divider"><i class="bar chart icon"></i></div>
+		{% endif %}
+
+		{% if awards.count > 0 %}
+		<a id="awa"><h3>5. Premios</h3></a>
+			<font size="2" color="black">
+			<ul class="ui list">
+				{% for award in awards %}
+					<li><b>{{ award.award }} para 
+						{% if award.awarded %}
+							{% for person in award.awarded.all %}
+                  				{{ person }}, 
+                			{% endfor %}
+						{% endif %}</b><br>
+						<ul>
+						{% if award.date %}
+							<li><b>Fecha:</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{ award.date }}<br></li>
+						{% endif %}
+						<li><b>Descripción:</b> &nbsp {{ award.description_award }}<br></li>
+						{% if award.web_award %}
+							<li><b>Sitio Web:</b> &nbsp &nbsp &nbsp {{ award.web_award }}</li>
+						{% endif %}
+					</ul>
+					</li>
+				{% endfor %}
+			</ul>
+			</font>
+		<div class="ui horizontal icon divider"><i class="bar chart icon"></i></div>
+		{% endif %}
+
+		{% if ser_count > 0 %}
+		<a id="awa"><h3>6. Servicios</h3></a>
+			<font size="2" color="black">
+			<ul class="ui list">
+				{% for service in services %}
+					<li><b>{{ service.name_services }}
+						{% if service.research_topic %}
+							({{ service.research_topic }})
+						{% endif %}</b><br>
+						<ul>
+							<li><b>Descripción:</b> &nbsp {{ service.description_service }}<br></li>
+							{% if service.web_service %}
+								<li><b>Sitio Web:</b> &nbsp &nbsp &nbsp <a href="{{ service.web_service }}">{{ service.web_service }}</a><br></li>
+							{% endif %}
+						{% if service.service_triptych %}
+							<li><b>Tríptico:</b> &nbsp &nbsp &nbsp &nbsp &nbsp <a href="{{ service.service_triptych.url }}">{{ service.service_triptych }}</a></li>
+							{% endif %}
+						</ul>
+					</li>
+				{% endfor %}
+			</ul>
+			</font>
+		<div class="ui horizontal icon divider"><i class="bar chart icon"></i></div>
+		{% endif %}
+
+		{% if cou_count > 0 %}
+		<a id="cou"><h3>7. Cursos</h3></a>
+			<font size="2" color="black">
+			<ul class="ui list">
+				{% for course in courses %}
+					<li><b>{{ course.code_course }} - {{ course.name_course }}</b><br>
+						<ul>
+							{% if course.description_course %}
+								<li><b>Descripción:</b> &nbsp &nbsp &nbsp {{ course.description_course }}<br></li>
+							{% endif %}
+							{% if course.prerequisites_course %}
+								<li><b>Pre-requisitos:</b> &nbsp {{ course.prerequisites_course }}<br></li>
+							{% endif %}
+							{% if course.professor_course %}
+								<li><b>Docente:</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{ course.professor_course }}<br></li>
+							{% endif %}
+							{% if course.website_course %}
+								<li><b>Sitio Web:</b> &nbsp &nbsp &nbsp &nbsp &nbsp <a href="{{ course.website_course }}">{{ course.website_course }}</a><br></li>
+							{% endif %}
+							{% if course.course_document %}
+								<li><b>Documento:</b> &nbsp &nbsp &nbsp <a href="{{ course.course_document.url }}">{{ course.course_document }}</a><br></li>
+							{% endif %}
+						</ul>
+					</li>
+				{% endfor %}
+			</ul>
+			</font>
+		<div class="ui horizontal icon divider"><i class="bar chart icon"></i></div>
+		{% endif %}
+		
+		<a id="ind"><h3>8. Indicadores {{ year }} del III</h3></a>
+		<font size="2" color="black">
+		<table class="ui collapsing table">
+			<tbody>
+				<tr>
+					<td width="10px"></td>
+					<td width="230px">Áreas de Investigación:</td>
+					<td width="5px" align="right">{{ are_count }}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Líneas de Investigación:</td>
+					<td align="right">{{ top_count }}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Personal del Instituto:</td>
+					<td align="right">{{ peo_count }}</td>
+				</tr>
+				{% if cte_count > 0 %}
+				<tr>
+					<td></td>
+					<td>Personal del Comité Técnico:</td>
+					<td align="right">{{ cte_count }}</td>
+				</tr>
+				{% endif %}
+				{% if cej_count > 0 %}
+				<tr>
+					<td></td>
+					<td>Personal del Comité Ejecutivo:</td>
+					<td align="right">{{ cej_count }}</td>
+				</tr>
+				{% endif %}
+				{% if ced_count > 0 %}
+				<tr>
+					<td></td>
+					<td>Personal del Comité Editor:</td>
+					<td align="right">{{ ced_count }}</td>
+				</tr>
+				{% endif %}
+				{% if cbe_count > 0 %}
+				<tr>
+					<td></td>
+					<td>Personal del Comité de Becas:</td>
+					<td align="right">{{ cbe_count }}</td>
+				</tr>
+				{% endif %}
+				{% if projects.count > 0 %}
+				<tr>
+					<td></td>
+					<td>Proyectos:</td>
+					<td align="right">{{ pro_count }}</td>
+				</tr>
+				{% endif %}
+				{% if publications.count > 0 %}
+				<tr>
+					<td></td>
+					<td>Publicaciones:</td>
+					<td align="right">{{ publications.count }}</td>
+				</tr>
+				{% endif %}
+				{% if awards.count > 0 %}
+				<tr>
+					<td></td>
+					<td>Premios:</td>
+					<td align="right">{{ awards.count }}</td>
+				</tr>
+				{% endif %}
+				{% if services.count > 0 %}
+				<tr>
+					<td></td>
+					<td>Servicios:</td>
+					<td align="right">{{ services.count }}</td>
+				</tr>
+				{% endif %}
+				{% if courses.count > 0 %}
+				<tr>
+					<td></td>
+					<td>Cursos:</td>
+					<td align="right">{{ courses.count }}</td>
+				</tr>
+				{% endif %}
+			</tbody>
+		</table>
+		</font>
+		<p align="right"><a href="#">Go to top</a></p>
+	</div>
+	</div>
+</div>
+
+{% endblock %}

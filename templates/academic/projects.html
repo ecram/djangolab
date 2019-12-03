@@ -1,0 +1,85 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+        <h1>Proyectos por Línea de Investigación:</h1>
+        <h4>Actualmente el Instituto está envuelto en una variedad de proyectos cubriendo distintos aspectos en base a las líneas de investigación.</h4>
+        <h4>Detalles:</h4>
+        <div class="ui grid">
+          <div class="four wide column">
+            <div class="ui inverted segment">
+              <div class="ui small inverted relaxed divided list">
+                <div class="item">
+                  <div class="content">
+                    <div class="header">Proyectos:</div>
+                    {% for project in projects %}
+                      <a href="#{{project.id}}"><i class="circular teal user icon"></i>
+                      <a href="#{{project.id}}">
+                      {{ project.acronym }}</a><br>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="twelve wide column">
+
+          {% for topic in tp %}
+          <h3 class="ui header"><b>
+          <i class="settings icon"></i>
+            {{ topic.topic.name }}:</b>
+          </h3>
+            {% for project in projects %}
+            {% if project.topic.name == topic.topic.name %}
+
+            <a id="{{project.id}}"></a>
+            <table width="100%" class="ui definition table segment">
+              <tbody>
+                <tr>
+                  <td colspan="2" bgcolor="black">
+                    <font color="white"><i class="open folder icon"></i> {{ project.name }}</font>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Línea de Investigación:</th>
+                  <td align="justify">
+                        {{ project.topic.name }}<br>
+                  </td>                  
+                </tr>
+                <tr>
+                  <th>Coordinador:</th>
+                  <td align="justify">
+                        {{ project.chair }}<br>
+                  </td>                  
+                </tr>
+                {% if project.description %}
+                <tr>
+                  <th>Descripción:</th>
+                  <td align="justify">
+                    {{ project.description }}
+                  </td>
+                </tr>
+                {% endif %}
+                {% if project.website %}
+                <tr>
+                  <th>Link: </th>
+                  <td>{{ project.website }}</td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+            
+
+            {% endif %}
+            {% endfor %}
+          {% endfor %}
+
+  </div>
+</div>
+<br>
+<br>
+
+{% endblock %}

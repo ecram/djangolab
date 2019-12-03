@@ -1,0 +1,60 @@
+{% extends 'academic/base.html' %}
+
+{% block encabezado %}
+{% endblock %}
+
+{% block content %}
+<h1>Conferencias y Journals en el Instituto de Investigación</h1>
+<font size=2 color="black">Algunas conferencias académicas y revistas especializadas que cubren las áreas de Investigación del Instituto:</font><br><br>
+<i class="calendar icon"></i><b>Congresos, Conferencias y Journals</b>
+  <table class="ui inverted small sortable table segment">
+    <thead>
+      <tr>
+        <th width="150px">Sigla</th>
+        <th width="400px" align="center">Nombre</th>
+        <th width="200px">Lugar</th>
+        <th>Fecha</th>
+        <th>Deadline</th>
+        <th>Calificación</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for conference in conferences %}
+      <tr>
+        <td align="left">
+          {% if conference.site_conference %}
+            <a href="{{ conference.site_conference }}" target="_blank">
+            {{ conference.acronym_conference }}
+            </a>
+          {% else %}
+            {{ conference.acronym_conference }}
+          {% endif %}
+        </td>
+        <td>{{ conference.name_conference }}</td>
+        <td>
+          {% if conference.place_conference %}
+            {{ conference.place_conference }} 
+          {% endif %}
+        </td>
+        <td>
+          {% if conference.end_conference %}
+          {% if conference.start_conference.month == conference.end_conference.month %}
+            {{ conference.start_conference|date:"M. d" }} - {{ conference.end_conference|date:"d, Y" }}
+          {% else %}
+            {{ conference.start_conference|date:"M. d" }} - {{ conference.end_conference|date:"M. d, Y" }}
+          {% endif %}
+          {% elif conference.place_conference %}{{ conference.start_conference|date:"M. d, Y" }}{% endif %}
+        </td>
+        <td>
+          {% if conference.deadline_conference %} {{ conference.deadline_conference|date:"M. d, Y" }} {% endif %}
+        </td>
+        <td>
+          {% if conference.qualis_cc %} {{ conference.qualis_cc }} {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+<br>
+
+{% endblock %}

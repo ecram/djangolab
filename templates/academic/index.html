@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="IIF - Instituto de Investigaciones Físicas">
+  <meta name="author" content="Marcelo Palma Salas">
+  <link rel="shortcut icon" href="{% static 'academic/img/logo.ico' %}">
+  <meta name="google-site-verification" content="-K-3JYoZyC3vJWMvmi5cMwsUvNq10Eo94Yst902VcwY" />
+
+  <title>IIF - Instituto de Investigaciones Físicas</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+
+   <link rel="stylesheet" type="text/css" href="{% static 'academic/css/semantic.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'academic/css/homepage.css' %}">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+  <script src="{% static 'academic/js/semantic.js' %}"></script>
+  <script src="{% static 'academic/js/homepage.js' %}"></script>
+  <script src="{% static 'academic/js/main.js' %}"></script>
+
+</head>
+
+<body id="home">
+
+  <style type="text/css">.fijo {position:fixed !important; top:0px; z-index:10 !important} </style>
+  <!--left: 11%; -->
+
+  <div class="ui inverted page grid masthead segment">
+    <div class="column">
+      <div class="fijo">
+        <div class="ui inverted pointing menu">
+          <div class="header item">
+            <a href='{% url "index" %}'>
+            <i class="home icon"></i> IIF </a>
+          </div>
+          <div class="right menu">
+            <div class="ui top right pointing mobile dropdown link item">
+              Menú
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <a class="item" href='{% url "about" %}'><i class="lab icon"></i>Acerca</a>
+                <a class="item" href='{% url "people" %}'><i class="users icon"></i>Personal</a>
+                <a class="item" href='{% url "projects" %}'><i class="open folder icon"></i>Investigación</a>
+                <a class="item" href='{% url "index" %}publications'><i class="text file icon"></i>Publicaciones</a>
+                <a class="item" href='http://www.fiumsa.edu.bo/rbf/index.html'><i class="calendar icon"></i>Revista RBF</a>
+                <a class="item" href='{% url "conferences" %}'><i class="info icon"></i>Eventos</a>
+                <a class="item" href='{% url "courses" %}'><i class="book icon"></i>Cursos</a>
+                <a class="item" href='{% url "meetings" %}'><i class="calendar icon"></i>Noticias</a>
+                <a class="item" href='{% url "services" %}'><i class="globe icon"></i>Servicios</a>
+                <a class="item" href='{% url "reports" %}'><i class="bar chart icon"></i>Reportes</a>
+              </div>
+            </div>
+            <a class="item" href='{% url "about" %}'><i class="lab icon"></i>Acerca</a>
+            <a class="item" href='{% url "people" %}'><i class="users icon"></i>Personal</a>
+            <a class="item" href='{% url "projects" %}'><i class="open folder icon"></i>Investigación</a>
+            <a class="item" href='{% url "index" %}publications'><i class="text file icon"></i>Publicaciones</a>
+            <a class="item" href='http://www.fiumsa.edu.bo/rbf/index.html'><i class="calendar icon"></i>Revista RBF</a>
+            <a class="item" href='{% url "conferences" %}'><i class="info icon"></i>Eventos</a>
+            <a class="item" href='{% url "courses" %}'><i class="book icon"></i>Cursos</a>
+            <a class="item" href='{% url "meetings" %}'><i class="calendar icon"></i>Noticias</a>
+            <a class="item" href='{% url "services" %}'><i class="globe icon"></i>Servicios</a>
+            <a class="item" href='{% url "reports" %}'><i class="bar chart icon"></i>Reportes</a>
+          </div>
+        </div>      
+      </div>
+
+      <div class="ui hidden transition information">
+        <p style="font-size:160%;"><a href="#address" title="Acerca del III"><font color="white">Instituto de Investigaciones Físicas</font></a></p>
+        <div class="large basic inverted animated fade ui button">
+          <a href='#address' style="color:white">
+            <div class="visible content"><b>Contáctenos</b></div>
+            <div class="hidden content"><b>¡Investigación!</b></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr align="center" noshade="noshade" size="2" width="80%" />
+  <br>
+  <div class="ui grid center aligned segment">
+    <div class="twelve wide column">
+      <a href='{% url "index" %}'><img src="{% static 'academic/img/logo.png'%}" height="150"></a>
+    	<p><h4>
+    		El Instituto de Investigaciones Físicas (IIF), dependiente de la Carrera de Física de la FCPN-UMSA, fue creado en 1952 para dedicarse al estudio de los Rayos Cósmicos en Chacaltaya, dando como resultado en investigaciones que condujieron en dos premios nobel. En la actualidad ha incrementado sus líneas de investigación: Física de la Atmósfera, Física Teórica, Geofísica, Física Aplicada y Rayos Cósmicos. Tiene cuatro ambientes de investigación: Campus Universitario de Cota cota, Laboratorios de Rayos Cósmicos y Atmósfera en Chacaltaya (5240 msnm.), primer Observatorio Geomagnético y estudio de energías alternativas en Patacamaya, segundo observatorio Geomagnético en Villa Remedios.</h4></p>
+    	<br>
+    </div>
+  </div>
+
+  {% if eve_count > 0 or conf_count > 0 %}
+    <hr align="center" noshade="noshade" size="2" width="80%" />
+    
+	<div class="ui two column page grid">
+    
+    <div class="column">
+      <h2 class="center aligned ui header">
+        <a href='{% url "meetings" %}' style="color: rgb(0,0,0)">
+        	Noticias
+        </a>
+      </h2>
+      <div class="ui left aligned segment">
+	    {% for event in events %}
+	      <div class="ui purple ribbon label">
+	      	<a class="user" href='{% url "meetings" %}'>
+	    	  <b>{{ event.date_meeting|date:"d/m/Y" }} - {{ event.name_meeting|slice:":65" }}</b>
+	    	</a>
+	      </div>
+	      <div class="ui feed">
+	      	<div class="event">
+	      	  <div class="label">
+	      	  	<a class="ui image" href='{% url "meetings" %}'>
+				  <img src="{{ event.image_meeting.url }}">
+            	</a>
+              </div>
+	          <div class="summary" align="justify">
+		        {{ event.description_meeting|slice:":192" }} <a href='{% url "meetings" %}'><b>Ver más</b></a>
+		      </div>
+	      	</div>
+	      </div>
+	    <br>
+	    {% endfor %}
+	    <a href='{% url "meetings" %}'><b>Más noticias...</b></a>
+	  </div>
+     </div>
+
+    <div class="column">
+      <h2 class="center aligned ui header">
+        <a href='{% url "conferences" %}' style="color: rgb(0,0,0)">
+        	Eventos
+        </a>
+      </h2>
+      <div class="ui left aligned segment">
+	    {% for conference in conferences %}
+
+	      {% if conference.site_conference %}
+	      <div class="ui teal ribbon label">
+	      	<a class="user" href='conference.site_conference'>
+	    	  <b>{{ conference.start_conference|date:"d/m/Y" }} - {{ conference.acronym_conference }}</b>
+	    	</a>
+	      </div>
+	      {% else %}
+	      <div class="ui teal ribbon label">
+	      	<a class="user">
+	    	  <b>{{ conference.start_conference|date:"d/m/Y" }} - {{ conference.acronym_conference }}</b>
+	    	</a>
+	      </div>
+	      {% endif %}
+	      <div class="ui feed">
+	      	<div class="event">
+	      	  <div class="label">
+	      	  	{% if conference.site_conference %}
+	      	  	  <a class="ui image" href='{{ conference.site_conference }}'>
+				  	<img src="/media/images/logo.png">
+            	  </a>
+            	{% else %}
+            	  <a class="ui image">
+				  	<img src="/media/images/logo.png">
+            	  </a>
+            	{% endif %}
+              </div>
+	          <div class="summary" align="justify">
+	          	{% if conference.site_conference %}
+	          	  <a href="{{ conference.site_conference }}"><b>
+		        	{{ conference.name_conference }}</b></a>, {{ conference.place_conference }}, <br><b>Deadline:</b> {{ conference.deadline_conference|date:"d/m/Y" }}
+		        {% else %}
+		        	<b>{{ conference.name_conference }}</b>, {{ conference.place_conference }}, <br><b>Deadline:</b> {{ conference.deadline_conference|date:"d/m/Y" }}
+		        {% endif %}
+		      </div>
+	      	</div>
+	      </div>
+	    <br>
+	    {% endfor %}
+	    <a href='{% url "conferences" %}'><b>Más conferencias...</b></a>
+	  </div>
+     </div>
+
+	</div>
+    <br>
+  {% endif %}
+
+
+<hr align="center" noshade="noshade" size="2" width="80%" /><br>
+
+<div class="ui page grid stackable segment">
+
+    <div class="row">
+      <div class="column">
+        <h1 class="center aligned ui header">
+          <a href='{% url "topics" %}' style="color: rgb(0,0,0)">
+            Líneas de Investigación
+          </a>
+        </h1>
+        <div class="ui horizontal divider"><i class="loading icon"></i></div>
+      </div>
+    </div>
+
+    {% if tps_count > 0 %}
+    <div class="center five column aligned row">
+
+      {% for topic in topics %}
+        <div class="column">
+          <a href='{% url "topics" %}' style="color: rgb(0,0,0)">
+             <img src="{{ topic.index_image.url }}" 
+             alt="{{ topic.name }}" height="110">
+          </a>
+          <p align="center">
+            <b>{{ topic.name }}</b><br>
+            {{ topic.index_description }}
+          </p>
+          <p>
+            <a class="ui linkedin right labeled icon button" 
+            href='{% url "topics" %}'>{{ topic.index_button }} <i class="large lab icon"></i></a>
+          </p>
+        </div>
+      {% endfor %}
+
+    </div>
+    {% endif %}
+  </div>
+  
+
+  <div class="ui inverted page grid stackable relaxed feature segment">
+  	<br>
+    <div class="row">
+      <div class="column">
+        <h1 class="center aligned ui header">
+          <a id="address"></a>Dónde encontrarnos
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seven wide column">
+        <h3 class="ui header">
+          <i class="location arrow icon"></i>Dirección:</h3>
+		    Instituto de Investigaciones Físicas<br>
+        	Calle 27 de Cota Cota - Campus Universitario<br>
+        	Edificio de Física<br>
+        	La Paz, Bolivia<br>
+        	Teléfono: +591 (2) 2792999<br>
+        	Fax. 591 (2) 2792622 Box: 8635<br>
+        	E-mail: fisic@fiumsa.edu.bo
+
+        <div class="ui inverted section divider"></div>
+
+        <a href='{% url "forms" %}'>
+          <h3 class="ui header">
+            <i class="book icon"></i> Formularios y Reportes:
+          </h3>
+        </a>
+
+        <div class="ui inverted animated selection list">
+          {% for form in forms %}
+            <a href='{{ form.document.url }}'>
+              <div class="item">
+              {{ form.name|safe }}
+              <div class="right floated">
+                <i class="download disk icon"></i>
+              </div>
+            </div>
+            </a>
+          {% endfor %}
+        </div>
+      
+
+        <div class="ui basic inverted animated button button"><a href='{% url "forms" %}'>
+          <div class="visible content">Más Formularios</div>
+          <div class="hidden content"><i class="right arrow icon"></i></div></a>
+        </div>
+      </div>
+
+      <div class="nine wide column">
+        <div class="ui feed segment">
+        	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3824.747747547825!2d-68.06854638511417!3d-16.538827788592357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f21460ff9357f%3A0x39ad6a7d1a896140!2sInstituto%20de%20Investigaciones%20F%C3%ADsicas%20(IIF)%2C%20UMSA!5e0!3m2!1ses-419!2sbo!4v1572999065743!5m2!1ses-419!2sbo" width="100%" height="240" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          <div class="content">
+            <p class="description" align="justify"> El <b>IIF</b> se encuentra en Edif. de Física, ingresando por Calle 27 de Cota-Cota.</p>
+            <p align="justify"> Desde el <b>Aeropuerto de El Alto</b> tome el <b>minibus Cotranstur</b> hasta la UMSA (Av. Villazón) y en la Calle JJ Perez tome un Trufi (Taxi) hasta calle 27 de Cota-Cota.
+            Otra opción: <b>Taxi</b> a la Estación 6 de marzo del <b>Teleférico-Línea Morada</b>, haga trasbordo para <b>Línea Azul</b>, luego a la <b>Línea Verde</b> hasta la Estación Irpavi, tome un transporte hasta la calle 27 de Cota-Cota.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<br>
+<div class="ui page grid overview segment">
+    <!--<div class="ui two wide column"></div>-->
+    <div class="sexteen wide column">
+      <div class="ui four column center aligned stackable divided grid">
+        <div class="column">
+          <a href="http://www.umsa.bo/">
+            <img src="{% static 'academic/img/umsa.png' %}" alt="Universidad Mayor de San Andrés (UMSA)" height="128">
+          </a>
+          <p>La <b>Universidad Mayor de San Andrés</b> es una universidad líder Boliviana reconocida por su excelencia académica e innovación científica.</p>
+          <p><a class="ui facebook right labeled icon button" href="http://www.umsa.bo/">UMSA <i class="globe icon"></i></a></p>
+        </div>
+        <div class="column">
+          <a href="http://www.fcpn.edu.bo">
+            <img src="{% static 'academic/img/fcpn-blue.png' %}" alt="Facultad de Ciencias Puras y Naturales (FCPN)" height="128">
+          </a>
+          <p>La <b>Facultad de Ciencias Puras y Naturales</b>, con más de 100 años de historia, está conformada por Matemática, Física, Química, Biología, Estadística e Informática.</p>
+          <p><a class="ui linkedin right labeled icon button" href="http://www.fcpn.edu.bo">FCPN <i class="desktop icon"></i></a></p>
+        </div>
+        <div class="column">
+          <a href="http://www.fiumsa.edu.bo/">
+            <img src="{% static 'academic/img/logocarrera.png' %}" alt="Smiley face" height="128">
+          </a>
+          <p><strong>La carrera de Física</strong> fue creada en 1966 a raíz de las actividades desarrolladas por el IIF y el Laboratorio de Física Cósima de Chacaltaya desde 1952.</p>
+          <p><a class="ui youtube right labeled icon button" href="http://www.fiumsa.edu.bo/">Investigación <i class="cloud upload icon"></i></a></p>
+        </div>
+        <div class="column">
+          <a href='{% url "awards" %}'>
+            <img src="{% static 'academic/img/trofeo.png' %}" alt="Smiley face" height="128">
+          </a>
+          <p>Algunos <strong>premios y reconocimientos</strong> obtenidos a través de la investigación realizada en el Instituto de Investigaciones en Informática.</p>
+          <p><a class="ui google plus right labeled icon button" href='{% url "awards" %}'>Premios <i class="trophy icon"></i></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="ui inverted teal page grid segment">
+    <div class="sixteen wide column">
+    <br>
+      <div class="ui four column stackable grid">
+        <div class="column">
+          <div class="ui header">Servicios del Instituto</div>
+          <div class="ui inverted link list">
+            {% for service in services %}
+              <a class="item" href='{% url "services" %}'>{{ service.name_services }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="column">
+          <a href="http://umsa.bo/web/guest/home" style="color:white;"><div class="ui header">UMSA</div></a>
+          <div class="ui inverted link list">
+            <a class="item" href="http://www.umsa.bo/web/guest/quienes-somos">Acerca</a>
+            <a class="item" href="http://www.umsa.bo/historia">Historia</a>
+            <a class="item" href="http://www.umsa.bo/web/guest/institutos">Investigación</a>
+            <a class="item" href="http://www.umsa.bo/web/guest/oferta">Oferta Académica</a>
+            <a class="item" href="http://www.lacatedra.umsa.bo/home">Noticias</a>
+            <a class="item" href="http://www.umsa.bo/web/guest/eventos">Eventos</a>
+            <a class="item" href="http://www.umsa.bo/web/guest/servicios">Servicios</a>
+            <a class="item" href="http://www.umsa.bo/web/relaciones-internacionales">Relaciones Internacionales</a>
+          </div>
+        </div>
+        <div class="column">
+          <a href="http://www.fcpn.edu.bo/" style="color:white"><div class="ui header">FCPN</div></a>
+          <div class="ui inverted link list">
+          	<a class="item" href="http://www.fcpn.edu.bo/fcpn/facultad.jsp">Historia</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/carreras_1.jsp">Pregrado</a>
+            <a class="item" href="http://pre.fcpn.edu.bo/prefas/">Admisiones</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/institutos_1.jsp">Investigación</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/publicaciones.jsp">Publicaciones</a>
+            <a class="item" href="http://ubikt.fcpn.edu.bo/#!/">Direcciones y Telefonía</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/agenda.jsp">Calendario Académico</a>
+            <a class="item" href="http://www.fcpn.edu.bo/fcpn/contactos.jsp">Contáctenos</a>
+          </div>
+        </div>
+        <div class="column">
+          <a href="http://investigacion.fcpn.edu.bo" style="color:white"><div class="ui header">Contactenós</div></a><br>
+          <addr>
+          	Unidad de Investigación (UFFI/UFDAC)<br>
+          	Facultad de Ciencias Puras y Naturales (FCPN)<br>
+          	Edificio Antiguo Monoblock Central
+          	Kardex - 2do Piso<br>
+          	Av. Villazón # 1995<br>
+          	La Paz - Bolivia<br>
+	    	+591 (2) 261-2906
+          </addr>
+        </div>
+      </div>
+    </div>
+
+<!--
+  <div class="sixteen wide column">
+    <center>
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><font color="Black">Djangolab 2</span> by </font><a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/ecram/djangolabv2" property="cc:attributionName" rel="cc:attributionURL"><font color="Black">M.I.P. Salas</font></a><br><font color="Teal"> is licensed under a </font><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:teal">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a><font color="Teal">.</font>
+      </span></span>
+  
+        <br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://scholar.google.es/citations?hl=es&pli=1&user=9idDJAsAAAAJ" rel="dct:source">https://scholar.google.es/citations?hl=es&pli=1&user=9idDJAsAAAAJ</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="marcelpalmas@gmail.com" rel="cc:morePermissions">marcelpalmas@gmail.com</a>.
+    </center>
+  </div> 
+  -->
+</div>
+
+</body>
+
+</html>
