@@ -190,7 +190,7 @@ _3.3. Acceder al Prompt de Postgres y cambiar la contraseña:_
 	$ sudo -u postgres psql
 	# \l 	retornará la lista de bases de datos en postgres
 	Cambiamos la contraseña
-	# \password postgres 	# new password: xxxxxxxx
+	# \password postgres 	# new password: password
 	# \q 	salir de postgres
 ```
 
